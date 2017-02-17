@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/fapiao.css"/>
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+	<script src="/js/addorder/addorderS.js?t=as" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/addorder/addorderC.js?t=as" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/addorder/addcheck.js?t=as" type="text/javascript" charset="utf-8"></script>
+	
+  <title>发票抬头</title>
+</head>
+<body ng-app="app" ng-controller="fapiaoC" ng-cloak ng-loading>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="#" class="btnBack" ng-show="page.showBackbtn" ng-click="back()"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title" ng-hide="page.title">发票抬头</span>
+          <span class="title" ng-bind="page.title"></span>
+          <span class="add management" ng-hide="!layout.index.show">管理</span>
+          <span class="add" ng-show="!layout.index.show&&add" ng-click="addFapiao.add()">保存</span>
+          <span class="add" ng-show="!layout.index.show&&edit" ng-click="addFapiao.edit()">保存</span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div id="content" class="container content" ng-show="layout.index.show" style="padding: 54px 0;">
+	      <div class="nopassenger" ng-show="noFapiao">
+		      <img src="../../images/user/icon_expression@2x.png" width="60px" height="60px"/>
+		      <p>没有发票抬头</p>
+	      </div>
+        <div class="lineGroup flex" ng-repeat="(k,v) in info">
+	        <i class="delete" ng-click="deleteFapiao(v)"></i>
+			    <p  class="flexOne inlineShow">{{v.invoicePayee}}</p>
+	        <i class="i_edit" ng-click="switchLayout('add',true);addFapiao.setFapiao(v)"></i>
+	      </div>
+	      <div class="btns">
+			    <a href="#" class="btn btnGreen" style="border-radius: 0;" ng-click="switchLayout('add');addFapiao.clear()">添加发票抬头</a>
+				</div>
+    </div>
+    
+    <!--添加-->
+    <div class="container content" ng-show="layout.add.show">
+      <div class="lineGroup flex marT8">
+        <span class="type">发票抬头</span>
+        <input type="text" placeholder="请填写发票抬头" class="flexOne" string-to-number ng-model="addFapiao.invoicePayee"/>
+      </div>
+	    <!--<div class="btns">
+		    <a href="#" class="btn btnGreen" ng-click="addressArea.add()">确定</a>
+			</div>-->
+    </div>
+  </div>
+  <message></message>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//点击“管理” 弹出删除按钮
+		$(".management").click(
+			function(){
+			var name = $(this).text();
+			if(name == "管理"){
+				$(this).text("完成");
+				$(".i_edit").hide();
+			}else{
+				$(this).text("管理");
+				$(".i_edit").show();
+			};
+			$(".lineGroup .delete").each(function(){
+				$(this).toggle( //1、先写click() 
+					function(){
+		  				$(this).animate({width:"0"},"slow");
+					},function(){
+		  				$(this).animate({width:"22px"},"slow")
+					}
+				)
+			})
+		})
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.view .lineGroup{
+	background-color: #fff;
+}
+.view .photo{
+	height:100px;
+	line-height: 100px;
+}
+.view .photo img{
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+}
+.view .lineGroup i.i_enter{
+	margin:0 16px;
+}
+.view .lineGroup span.head{
+	/*width: 80px;*/
+	padding-left: 16px;
+}
+.view .lineGroup span.con{
+	text-align: right;
+}
+.view .lineGroup span.tip{
+	font-size: 12px;
+	color: #808080;
+}
+.view .kbox p{
+	height: 28px;
+    line-height: 28px;
+    padding-left: 16px;
+    font-size: 12px;
+    margin-top: 7px;
+}

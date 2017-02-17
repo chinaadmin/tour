@@ -1,0 +1,146 @@
+.top{
+	width: 100%;
+	background-color: #f7d035;
+	text-align: center;
+	position: relative;
+}
+.top .black{
+	height: 40px;
+	width: 50%;
+}
+.top .image{
+	display: block;
+	margin: 0 auto;
+	border: 2px solid #202020;
+	border-radius: 72px;
+}
+.top .wantCard{
+	position: absolute;
+	top: 64px;
+	left: 65%;
+}
+.top .grade{
+	padding: 16px 0 25px;
+}
+.upgrade_level{
+	width: 100%;
+	padding: 0 8px;
+	margin-bottom: 20px;
+}
+.upgrade_level .card{
+	border-radius: 10px;
+	padding: 20px 0;
+}
+.upgrade_level .cardY{
+	background-image: url(../images/user/yellow_bg@2x.png);
+	background-size: cover;
+}
+.upgrade_level .cardP{
+	background-image: url(../images/user/purple_bg@2x.png);
+	background-size: cover;
+}
+.upgrade_level .need p{
+	font-size: 16px;
+	color: #fff;
+	padding-left: 12px;
+}
+.upgrade_level .need p span{
+	color: #f7d035;
+}
+.upgrade_level .need a{
+	display: block;
+	width: 80px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	font-size: 15px;
+	color: #202020;
+	border-radius: 14px;
+	background-color: #f7d035;
+	margin-right: 20px;
+}
+.upgrade_level .privilege{
+	margin-top: 20px;
+}
+.upgrade_level .privilege .left{
+	background-color: #202020;
+	text-align: center;
+	width: 40px;
+	height: 40px;
+	margin-right: 12px;
+}
+.upgrade_level .privilege .left p{
+	color: #f7d035;
+	font-size: 12px;
+	line-height: 20px;
+}
+.upgrade_level .privilege .right{
+	font-size: 12px;
+	line-height: 20px;
+	color: #fff;
+}
+.myPrivilege{
+	padding: 0 8px;
+	position: relative;
+	top: -15px;
+	margin-bottom: 5px;
+}
+.myPrivilege .box{
+	padding: 16px 0;
+	text-align: center;
+	background-color: #fff;
+	border-radius: 10px;
+}
+.myPrivilege .box h3{
+	font-size: 16px;
+	color: #ff0c00;
+	margin: 0 0 16px;
+}
+.myPrivilege .box p{
+	font-size: 12px;
+	line-height: 20px;
+	padding: 0 40px;
+}
+.sanjiao{
+	width: 0;
+	height: 0;
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-bottom: 10px solid #fff;
+	margin: 0 auto;
+}
+.myPrivilege .box .split{
+	height: 20px;
+	margin: 10px 0;
+}
+.myPrivilege .box .split .left{
+	width: 10px;
+	height: 20px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #e8eaec;
+}
+.myPrivilege .box .split .right{
+	width: 10px;
+	height: 20px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	background-color: #e8eaec;
+}
+.myPrivilege .box .split .between{
+	height: 1px;
+	border-top: 1px dashed #d5d5d5;
+	margin-top: 10px;
+}
+.marT20{
+	margin-top: 20px;
+}
+.tip{
+	position: fixed;
+	bottom: 0;
+	font-size: 11px;
+	text-align: center;
+	line-height: 20px;
+	width: 100%;
+	z-index: 10;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/membershipGrade.css"/>
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/plugin/jpeg_encoder_basic.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/plugin/exif.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/promotion/promotionS.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/promotion/promotionC.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/promotion/promotion.js" type="text/javascript" charset="utf-8"></script>
+  <title>会员等级</title>
+</head>
+<body ng-app="app" ng-controller="gradeC" ng-cloak ng-loading>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="#" class="btnBack" ng-back="personalCenter"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title">
+          	会员等级
+          </span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div id="content" class="container content">
+    	<div class="top">
+    		<div class="flex">
+    			<div class="black flexOne" style="border-right: 1px solid #202020;"></div>
+    			<div class="black flexOne" style="border-left: 1px solid #202020;"></div>
+    		</div>
+    		<img class="image" ng-src="{{user.headAttr}}" err-src="../../images/user/icon_user.png" width="72px" height="72px"/>
+    		<p class="grade">{{user.vip}}</p>
+    		<a><img class="wantCard" src="../../images/user/icon_want@2x.png" height="20px" width="84px" ng-show="user.vipNum != 1" ng-click="getCard()"/></a>
+    	</div>
+    	<div class="myPrivilege" ng-show="user.vipNum == 2">
+    		<div class="sanjiao">
+    		</div>
+    		<div class="box">
+	    		<h3>我的会员特权</h3>
+	    		<p>享受首次旅游减免68元/人，消费得积分、免费旅游机会、生日礼物。</p>
+    		</div>
+    	</div>
+    	<div class="myPrivilege" ng-show="user.vipNum == 3">
+    		<div class="sanjiao">
+    		</div>
+    		<div class="box">
+	    		<h3>我的会员特权</h3>
+	    		<p>享受首次旅游减免168元/人，消费得积分、免费旅游机会、生日礼物，三人以上旅游其中一人可享有5折、6.8折、8.8 折相应折扣。</p>
+    		</div>
+    	</div>
+    	<div class="myPrivilege" ng-show="user.vipNum == 4">
+    		<div class="sanjiao">
+    		</div>
+    		<div class="box">
+	    		<h3>我的会员特权</h3>
+	    		<p>享受首次旅游减免68元/人，消费得积分、免费旅游机会、生日礼物。</p>
+	    		<div class="split flex">
+	    			<div class="left"></div>
+	    			<div class="between flexOne"></div>
+	    			<div class="right"></div>
+	    		</div>
+	    		<p>享受首次旅游减免168元/人，消费得积分、免费旅游机会、生日礼物，三人以上旅游其中一人可享有5折、6.8折、8.8 折相应折扣。</p>
+    		</div>
+    	</div>
+    	<div class="upgrade_level" ng-show="user.vipNum == 1||user.vipNum == 3" ng-class="{true:'marT20'}[user.vipNum == 1]">
+    		<div class="card cardY">
+    			<div class="need flex">
+		    		<p class="flexOne">{{pay2.member_name}}仅需人民币<span>{{pay2.member_price}}</span>元</p>
+		    		<a href="#" ng-click="pay.pay(2)">立即领取</a>
+    			</div>
+	    		<div class="privilege flex">
+	    			<div class="left">
+	    				<p>会员</p>
+	    				<p>特权</p>
+	    			</div>
+	    			<p class="right flexOne">享受首次旅游见面68元/人，消费得积分、免费旅游机会、生日礼物。</p>
+	    		</div>
+    		</div>
+    	</div>
+    	<div class="upgrade_level" ng-show="user.vipNum == 1||user.vipNum == 2">
+    		<div class="card cardP">
+    			<div class="need flex">
+		    		<p class="flexOne">{{pay3.member_name}}仅需人民币<span>{{pay3.member_price}}</span>元</p>
+		    		<a href="#" ng-click="pay.pay(3)">立即领取</a>
+    			</div>
+	    		<div class="privilege flex">
+	    			<div class="left">
+	    				<p>会员</p>
+	    				<p>特权</p>
+	    			</div>
+	    			<p class="right flexOne">享受首次旅游减免168元/人，消费得积分、免费旅游机会、生日礼物，三人以上旅游其中一人可享有5折、6.8折、8.8折相应折扣。</p>
+	    		</div>
+    		</div>
+    	</div>
+    	<p class="tip">温馨提示：个人会员和家庭会员享有普通会员的所有权利</p>
+    </div>
+  </div>
+  <message></message>
+</body>
+</html>

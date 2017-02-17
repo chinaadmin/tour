@@ -1,0 +1,177 @@
+@charset "utf-8";
+html, body { 
+	height: 100%;
+	width: 100%;
+  }
+.view .cancel{
+	position: absolute;
+	top: 32px;
+	left: 32px;
+}
+.view .content{
+	z-index: 50;
+}
+.logo{
+	text-align: center;
+}
+.view .inputBox{
+	background-color: #e8eaec !important;
+	width:100%;
+	max-width: 992px;
+	margin-top: 50px !important;
+	padding: 0 32px !important;
+}
+.view .inputBox .loginType{
+	width:100%;
+	height: 21px;
+	font-size:15px;
+	font-weight: 800;
+}
+.view .inputBox .loginType span{
+	float:left;
+	display: block;
+	width:50%;
+	text-align: center;
+	color: #00bc9f;
+}
+.view .inputBox .bg{
+	position: relative;
+	height: 4px;
+	margin-top: 8px;
+}
+.view .inputBox .bg .bg-grey{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.view .inputBox .bg .bg-green{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+.view .inputBox .bg .moveR{
+	animation: MR 0.5s forwards;
+	-webkit-animation: MR 0.5s forwards;
+	-moz-animation: MR 0.5s forwards;
+	-o-annimation: MR 0.5s forwards;
+	-ms-animation: MR 0.5s forwards;
+}
+@keyframes MR{
+	from{left:0;}
+	to{left:50%;}
+}
+@-webkit-keyframes MR{
+	from{left:0;}
+	to{left:50%;}
+}
+@-moz-keyframes MR{
+	from{left:0;}
+	to{left:50%;}
+}
+@-o-keyframes MR{
+	from{left:0;}
+	to{left:50%;}
+}
+@-ms-keyframes MR{
+	from{left:0;}
+	to{left:50%;}
+}
+.view .inputBox .bg .moveL{
+	animation: ML 0.5s forwards;
+	-webkit-animation: ML 0.5s forwards;
+	-moz-animation: ML 0.5s forwards;
+	-o-annimation: ML 0.5s forwards;
+	-ms-animation: ML 0.5s forwards;
+}
+@keyframes ML{
+	from{left:50%;}
+	to{left:0;}
+}
+@-webkit-keyframes ML{
+	from{left:50%;}
+	to{left:0;}
+}
+@-moz-keyframes ML{
+	from{left:50%;}
+	to{left:0;}
+}
+@-o-keyframes ML{
+	from{left:50%;}
+	to{left:0;}
+}
+@-ms-keyframes ML{
+	from{left:50%;}
+	to{left:0;}
+}
+.view .inputBox .input{
+	position: relative;
+	margin-top: 40px;
+}
+.view .inputBox .input a{
+	position: absolute;
+    top: 67px;
+    right: 16px;
+    white-space: nowrap;
+    color: #fff;
+    font-size: 11px;
+    width: 70px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #00bc9f;
+}
+.view .inputBox .input .active{
+	color: #909090;
+	border: 1px solid #909090;
+	border-radius: 10px;
+	background-color: #fff;
+}
+.view .inputBox .input img.mobile{
+	position: absolute;
+	left: 12px;
+    top: 14px;
+}
+.view .inputBox .input img.password{
+	position: absolute;
+	left: 12px;
+    top: 70px;
+}
+.view .inputBox .input input{
+	border:none;
+	width:100%;
+	height:44px;
+	line-height: 20px;
+	padding: 12px 0;
+	border-radius: 10px;
+	background-color: #fff;
+	margin-bottom: 12px;
+	padding-left: 49px;
+}
+.view .inputBox .register{
+	font-size: 13px;
+	font-weight: 800;
+	color:#00bc9f;
+	float: left;
+	padding-top: 4px;
+}
+.view .inputBox .forget{
+	font-size: 13px;
+	/*font-weight: 800;*/
+	color:#404040;
+	float: right;
+	padding-top: 4px;
+}
+.view .fastLogin{
+	margin-top: 50px;
+	text-align: center;
+}
+.view .fastLogin img{
+	margin-top: 16px;
+}
+.view .inputBox .btns{
+	margin-top: 40px;
+	width:100%;
+	padding:0;
+}

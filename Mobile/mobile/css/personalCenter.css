@@ -1,0 +1,108 @@
+@charset "utf-8";
+.view .header-box{
+	position: inherit;
+	background-image: url(../images/user/background@2x.png);
+	background-size: cover;
+}
+.view .personal-box{
+	width: 100%;
+	height: 234px;
+	padding-top: 64px;
+	position: relative;
+}
+.view .personal-box p{
+	font-size: 15px;
+	margin-top: 15px;
+	color:#fff;
+}
+.view .personal-box .user_photo{
+	position: relative;
+	width:88px;
+	height: 88px;
+	border-radius: 44px;
+	margin: 0 auto;
+	border: 4px solid #e5b7c9;
+	background-color: rgba(0,0,0,0.3);
+}
+.view .personal-box .user_photo > img{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 40px;
+}
+.view .personal-box .user_photo input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 99;
+}
+.view .personal-box .level{
+	font-size: 12px;
+    margin: 0;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 10px 0 7px;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    background-color: rgba(0,0,0,0.6);
+    color: #e9e9e9;
+    position: absolute;
+    top: 92px;
+    right: 0;
+}
+.view .personal-box .level img{
+	margin: 0 10px 2px 0;
+}
+.view .personal-box .level2{
+	font-size: 12px;
+    margin: 0;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 10px 0 7px;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    background-color: #ff6c00;
+    color: #e9e9e9;
+    position: absolute;
+    top: 92px;
+    right: 0;
+}
+.view .personal-box .level2 img{
+	margin: 0 10px 2px 0;
+}
+.view .content{
+	padding: 0;
+	padding-bottom: 55px;
+}
+.view .content .ubox{
+	padding: 0 12px;
+	background-color: #fff;
+}
+.view .lineGroup img{
+	margin: 11px 12px 11px 0;
+}
+.view .lineGroup .RMB{
+	color: #ff6c00;
+	font-size: 18px;
+	padding-right: 12px;
+}
+.view .lineGroup .coins{
+	color: #ffb808;
+	font-size: 18px;
+	padding-right: 12px;
+}
+.view .lineGroup i.i_enter{
+	background-image: url(../images/user/icon_look.png);
+	background-size:100%;
+	background-repeat:no-repeat ;
+	width:6px;
+	background-position: center;
+}
+.view .content .btns{
+	padding: 0 12px;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/passengersel.css"/>
+  <!--<link rel="stylesheet" media="screen" href="../../css/deposit.css" />-->
+  <link rel="stylesheet" media="screen"  href="../../css/mobiscroll_date.css" rel="stylesheet" />
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script> 
+  <script src="/js/plugin/jpeg_encoder_basic.js" type="text/javascript" charset="utf-8"></script>
+   <script src="/js/plugin/exif.js" type="text/javascript" charset="utf-8"></script>
+   
+  <script src="/js/ngResizeImage.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userC.js?t=14122" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    var app = angular.module('app', ["ui.router","app.controllers","app.services","app.dataStore","ngTouch","ngResizeImage"])
+    .run(function () { })
+  </script>
+  <title>添加旅客</title>
+</head>
+<body ng-app="app" ng-controller="passengerselC" ng-cloak ng-loading>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="#" class="btnBack" ng-show="page.showBackbtn" ng-click="back()"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title" ng-hide="page.title">添加旅客</span>
+          <span class="title" ng-bind="page.title"></span>
+          <span class="add management" ng-hide="!layout.index.show" ng-click="topage()">保存</span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div id="content" class="container content" ng-show="layout.index.show" style="padding-top: 54px;">
+	      <div class="nopassenger" ng-show="noPassengers">
+		      <img src="../../images/user/nopassenger.png" width="60px" height="50px"/>
+		      <p>您还没有旅客资料呢~快去添加一个吧^_^</p>
+	      </div>
+        <div class="lineGroupE flex" ng-repeat="(k,v) in info">
+          <!--
+        	<img class="delete" src="../../images/user/icon_reduction@2x.png" width="22px" height="22px" alt="删除" ng-click="deletePassenger(v)"/>
+          -->
+          <span class="delete" ng-click="check(v)" ng-class="v.check?'active':''">
+            <em></em>
+          </span>
+	        <span class="name flexOne">{{v.pe_name}}</span>
+	        <div class="info flexthree">
+	        	<p>
+			        <span class="mobile">{{v.pe_mobile}}</span>
+			        <img src="../../images/user/icon_phone_number@2x.png" width="12px" height="12px" alt="手机号码"/>
+	        	</p>
+	        	<p>
+			        <span  class="number">{{v.certificates[0].ce_number}}</span>
+			        <img src="../../images/user/icon_id_card-@2x.png" width="18px" height="12px" alt="证件号"/>
+	        	</p>
+	        </div>
+	        <!--<i class="i_edit" ng-click="switchLayout('edit');editPassenger.setPassenger(v)"></i>-->
+	      </div>
+	      <div class="btns">
+			    <a href="#" class="btn btnGreen" style="border-radius: 0;" ng-click="addPassenger()">添加新旅客</a>
+				</div>
+    </div>
+    
+    
+  </div>
+  <message></message>
+</body>
+</html>

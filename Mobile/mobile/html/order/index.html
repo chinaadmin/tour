@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+
+	<head>
+
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+
+		<meta charset="utf-8">
+		<meta name="description" content="NIM- Responsive One Page Creative Template" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Metrothenes" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" media="screen" href="../../css/commonCss.css" />
+		<link rel="stylesheet" media="screen" href="../../css/myOrder.css" />
+
+		<script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="/js/order/orderS.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/order/orderC.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/order/order.js" type="text/javascript" charset="utf-8"></script>
+
+		<title>我的订单</title>
+	</head>
+
+	<body ng-app="app" ng-controller="orderC" ng-cloak ng-loading>
+		<div class="view">
+			<!-- 头部 -->
+			<header class="header-box">
+				<div class="container">
+					<div class="activebar">
+					  <a href="javascript:history.go(-1)" class="btnBack"><img src="../../images/user/btnBack.png"/></a>
+					  <span class="title">
+					    我的订单
+					  </span>
+					</div>
+				</div>
+    		</header>
+			<div class="nav-box flex" ng-show="isLogin">
+				<a><span ng-click="switch(null)" ng-class="act==null?'active':''">全部订单</span></a>
+				<a><span ng-click="switch(0)" ng-class="act==0?'active':''">待支付</span></a>
+				<a><span ng-click="switch(1)" ng-class="act==1?'active':''">待出行</span></a>
+				<a><span ng-click="switch(2)" ng-class="act==2?'active':''">已完成</span></a>
+				<a><span ng-click="switch(3)" ng-class="act==3?'active':''">申请退款</span></a>
+				<!--<a><span ng-click="switch(6)" ng-class="act==6?'active':''">已取消</span></a>-->
+			</div>
+			<!--  内容 -->
+			<div id="content" class="container content orderlist">
+
+				<section class="fbox" ng-repeat="(k,v) in order">
+					<div class="fbox_title" order_id="{{order_id}}">
+						<span class="name">{{v.name}}</span>
+						<span class="sn">订单号{{v.order_sn}}</span>
+						<span class="status" ng-show="v.status==0">待支付</span>
+						<span class="status" ng-show="v.status==1">待出行</span>
+						<span class="status" ng-show="v.status==2">已完成</span>
+						<span class="status" ng-show="v.status==3">待退款</span>
+						<span class="status" ng-show="v.status==4">拒绝退款</span>
+						<span class="status" ng-show="v.status==5">退款完成</span>
+						<span class="status" ng-show="v.status==6">已取消</span>
+					</div>
+					<div class="fbox_content" ng-click="detail(v)">
+						<div class="con_item">
+							<div class="flex" >
+								<a>
+									<img ng-src="{{v.photo}}"/>
+								</a>
+								<div class="details flexOne">
+									<h3>{{v.goodsname}}</h3>
+									<p>出发时间：{{v.startTime}}</p>
+									<p>预定数量：{{v.num}}</p>
+								</div>
+							</div>
+						</div>
+						<p class="tips" ng-show="v.status==0">温馨提示：请于{{v.expireTime}}前完成支付！</p>
+					</div>
+					<div class="fbox_footer">
+						<span>共<em class="price">¥ {{v.order_amount}}</em></span>
+						<button type="button" class="btn" ng-show="v.status==0" ng-click="payOrder(v)">立即支付</button>
+						<button type="button" class="btn" ng-show="v.status==1" ng-click="refundOrder(v)">申请退款</button>
+						<!--<button type="button" class="btn" ng-show="v.status==0" ng-click="cancelOrder(v)">取消订单</button>-->
+					</div>
+				</section>
+				<!--<div class="orderItem sort-box" ng-repeat="(key, value) in order">
+					<div class="sort-topbar">
+						<p>
+							<span>订单号<b class="colorBlack marL4" ng-bind="value.orderSn"></b></span>
+							<span><a ng-bind="value.statusName"></a></span>
+						</p>
+					</div>
+					<div class="sort-item" ng-repeat="(k, v) in value.goods" ng-hide="k>1&&!value.show">
+						<div class="sort-img" ng-click="detail(value)">
+							<a href="#"><img ng-src="{{v.photo}}" err-src="../../images/list_00.jpg" class="img-responsive img-size"></a>
+						</div>
+						<div class="sort-title">
+							<h4><a ng-click="detail(value)" href="#" ng-bind="v.name"></a></h4>
+							<div class="sort-price">
+								<p>
+									<span ng-bind="'￥'+v.price"></span>
+									<i ng-if="value.status != 6">
+										<a class="btn float-R" ng-show="v.comment_status == 1" ng-click="comments(value)">待评论</a>
+								  </i>
+								</p>
+								<p class="standard">
+									<em ng-bind="'x'+v.number"></em>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="sort-item-d">
+						<p ng-show="value.goods.length>2&&!value.show"><span ng-click="value.show = !value.show">显示其余<i ng-bind="value.goods.length-2"></i>件</span></p>
+						<p><span>共<i ng-bind="value.goods.length"></i>件商品，实付：￥<i ng-bind="value.price"></i></span></p>
+					</div>
+
+					<div class="sort-footer">
+						<p class="text-right noMar">
+							<a class="btn btn-no" ng-show="value.btnCancel  == '1'" ng-click="cancel(value)">取消订单</a>
+							<a class="btn btn-Ye" ng-show="value.btnPay     == '1'" ng-click="pay(value)">立即付款</a>
+							<a class="btn btn-Ye" ng-if="value.btnReceipt =='1' ||value.status=='6' " ng-click="togtics(value.goods[0].recId)">查看物流</a>
+							<a class="btn btn-no" ng-show="value.btnDel     == '1'" ng-click="del(value)">删除订单</a>
+							<a class="btn btn-Ye" ng-show="value.btnReceipt == '1'" ng-click="sure(value)">确认收货</a>
+						</p>
+					</div>
+
+				</div>-->
+				<p class="more">
+					<a class="btn" ng-click="more()" ng-show="hasMore">... 点击加载更多 ...</a>
+				</p>
+				<div class="empty" ng-hide="hasRes">
+					<div class="w">
+						<p><img src="../../images/user/icon_expression@2x.png" width="60px" height="60px"></p>
+						<p><span ng-bind="noRes"></span></p>
+						<!--<p><a class="btn" ng-click="toMin()">去抢购</a></p>-->
+					</div>
+					<span class="i"></span>
+				</div>
+				<div class="untoken" ng-hide="isLogin">
+					<img src="../../images/user/orders_pic@2x.png" width="100px" height="100px" alt="无订单"/>
+					<p class="orders">我的订单</p>
+					<p class="clues">登录或注册可以查看订单详情哦</p>
+					<div class="btns">
+				        <a href="#" class="btn btnGreen" ng-click="toPage('login')">登录 / 注册</a>
+			    	</div>
+				</div>
+			</div>
+			<footer class="foot-box">
+		        <nav class="flex">
+		            <a class="flexOne" ng-click="toPage('home')">
+		              <img src="../../images/index/icon_home_def@2x (2).png">
+		              <p class="nav-choice colorYe">首页</p>
+		            </a>
+		            <a class="flexOne">
+		              <img src="../../images/index/icon_order_selected@2x.png">
+		              <p class="nav-choice">订单</p>
+		            </a>
+		            <a class="flexOne" ng-click="toPage('personalCenter')">
+		              <img src="../../images/index/icon_my_default@2x.png">
+		              <p>我的</p>
+		            </a>
+		        </nav>
+		      </footer>
+		</div>
+		<message></message>
+	</body>
+
+</html>

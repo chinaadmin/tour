@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonExt.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/orderDetailnext.css"/>
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+   <script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+  <script src="/js/order/orderS.js?t=as" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/order/orderC.js?t=as" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/order/check.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+  <title>支付订单</title>
+</head>
+<body ng-app="app" ng-controller="checkCs" ng-loading ng-cloak>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="javascript:history.go(-1)" class="btnBack backNoText"> <i class="icon icon-back marR4"></i>
+          </a>
+          <span class="title title-color">支付订单</span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    
+
+
+   <div class="container content payby">
+     <div class="zhifutop" >
+      <div class="col-xs-12 zhifutops">
+       <div class="col-xs-12 first-show">
+        <div class="col-xs-12 zhifutops-one">
+          <div class="col-xs-3 zhifutops-one-left">产品名称</div>
+          <div class="col-xs-9 zhifutops-ones">{{data.name}}</div>
+        </div>
+        <div class="col-xs-12 zhifutops-one">
+          <div class="col-xs-3 zhifutops-one-left">订单金额</div>
+          <div class="col-xs-9 zhifutops-ones"><span>¥ {{data.money_paid}}</span></div>
+        </div>
+        <div class="col-xs-12 zhifutops-one">
+          <div class="col-xs-3 zhifutops-one-left">订单编号</div>
+          <div class="col-xs-9 zhifutops-ones">{{data.order_sn}}</div>
+        </div>
+        <div class="col-xs-12 zhifutops-one">
+          <div class="col-xs-3 zhifutops-one-left">出发日期</div>
+          <div class="col-xs-9 zhifutops-ones"><span>{{data.start_time}}</span></div>
+        </div>
+        <div class="col-xs-12 zhifutops-one">
+          <div class="col-xs-3 zhifutops-one-left">出行人数</div>
+          <div class="col-xs-9 zhifutops-ones">{{data.traveller_num}}人</div>
+        </div>
+       </div>
+       <div ng-show="isshow">
+        <div class="col-xs-12 first-show" >
+	        <div ng-repeat="(key, value) in data.travellerList">
+		        <div class="col-xs-12 zhifutops-one">
+		          <div class="col-xs-3 zhifutops-one-left">出行人</div>
+		          <div class="col-xs-3 zhifutops-ones">{{value.traveller_name}}</div>
+		          <div class="col-xs-6 zhifutops-ones">{{value.paper_code}}</div>
+		        </div>
+	        </div>
+        </div>
+
+        <div class="col-xs-12 first-show">
+	        <div class="col-xs-12 zhifutops-one">
+	          <div class="col-xs-3 zhifutops-one-left">订单联系人</div>
+	          <div class="col-xs-3 zhifutops-ones">{{data.contact}}</div>
+	          <div class="col-xs-6 zhifutops-ones">{{data.mobile}}</div>
+	        </div>
+        </div>
+        <div class="col-xs-12 first-show">
+	        <div class="col-xs-12 zhifutops-one" ng-repeat="(key, value) in data.insuList">
+	          <div class="col-xs-3 zhifutops-one-left">保险</div>
+	          <div class="col-xs-9 zhifutops-ones">{{value.name}}</div>
+	        </div>
+        </div>
+        <div class="col-xs-12 first-show" ng-show="show">
+	        <div class="col-xs-12 zhifutops-one">
+	          <div class="col-xs-3 zhifutops-one-left">发票抬头</div>
+	          <div class="col-xs-9 zhifutops-ones">{{data.invoice_payee}}</div>
+	        </div>
+	        <div class="col-xs-12 zhifutops-one">
+	          <div class="col-xs-3 zhifutops-one-left">发票收件人</div>
+	          <div class="col-xs-3 zhifutops-ones">{{data.receive_name}}</div>
+	          <div class="col-xs-6 zhifutops-ones">{{data.receive_phone}}</div>
+	        </div>
+	        <div class="col-xs-12 zhifutops-one">
+	          <div class="col-xs-3 zhifutops-one-left">发票地址</div>
+	          <div class="col-xs-9 zhifutops-ones">{{data.receive_address}}</div>
+	        </div>
+        </div>
+       </div>
+      </div>
+      <div class="col-xs-12 show-all" ng-click="chargeheight()">
+         <img src="../../images/user/icon_drag@2x.png" width="40px" height="12px"/>
+      </div>
+     </div>
+    </div>
+    <div class="container padding-none" style="margin-top: 10px;">
+     <div class="bgs clearfix">
+      <div class="fanshi clearfix">
+	      <div class="bgs-title">
+	        	请选择支付方式
+	      </div>
+         <ul>
+           <li ng-click="payby.get(0)" ng-class="!payby.currentItem?'active':''" ng-hide="unWinx">
+             <span class="weixin"></span>微信支付
+             <em></em>
+           </li>
+           <li ng-class="!payby.currentItem?'active':''" ng-show="unWinx" style="opacity: 0.3;">
+             <span class="weixin"></span>微信支付
+           </li>
+           <li ng-class="payby.currentItem?'active':''" ng-show="unClick" style="opacity: 0.3;">
+             <span class="huiyuan"></span>会员卡支付
+             <!--<em></em>-->
+             <i class="tip">{{mess}}</i>
+           </li>
+           <li ng-click="payby.get(1)" ng-class="payby.currentItem?'active':''" ng-hide="unClick">
+             <span class="huiyuan"></span>会员卡支付
+             <em></em>
+             <i class="tip">{{mess}}</i>
+           </li>
+         </ul>
+      </div>
+     </div>
+       <div class="btn-margin container">
+       	<button class="btn btn-lg btn-block btn-color" ng-click="pays()" style="margin-bottom: 20px;">立即支付</button>
+       </div>
+    </div>
+    <!--支付密码框-->
+      <div class="msgBox beijinss">
+      <div class="allwidth" id="showsels">
+      <div class="tops">
+      <p>请输入支付密码</p><span>¥ {{data.money_paid}}</span><a ng-click="cancel()"><img src="../../jituimages/icon_box_cancel@2x.png"></a>
+      </div>
+     <div class="mimas">
+         <input type="password" ng-model="password.old" style="ime-mode:disabled"  oninput="if(value.length>6)value=value.slice(0,6);this.value=this.value.replace(/\D/g,'')">
+     </div>
+        <button class="btn btn-color " ng-click="tijiaos()" style="margin: 0;">提交</button>   
+      </div>
+      </div>
+     <!--支付密码框-->
+
+     <!--支付密码错误提示选择框-->
+      <div class="msgBox beijinsst">
+      <div class="allwidtht" id="showselst">
+      <div class="tops">
+      <p class="aligns">支付密码错误</p><!--<a ng-click="cancelt()"><img src="../../jituimages/icon_box_cancel@2x.png"></a>-->
+      </div>
+      <div class="sel-btn">
+        <button class="btn btn-color " ng-click="forget()">忘记密码</button>   
+        <button class="btn btn-color " ng-click="cancelt()">重试</button>
+        </div>
+      </div>
+      </div>
+     <!--支付密码错误提示选择框-->
+     
+     <!--余额不足提示选择框-->
+      <div class="msgBox beijinssy d-hide">
+      <div class="allwidtht" id="showselsy">
+      <div class="tops">
+      <p class="aligns">余额不足</p><!--<a ng-click="cancelt()"><img src="../../jituimages/icon_box_cancel@2x.png"></a>-->
+      </div>
+      <div class="sel-btn">
+        <button class="btn btn-color " ng-click="recharge()">前往充值</button>   
+        <button class="btn btn-color " ng-click="cancely()">其他支付方式</button>
+        </div>
+      </div>
+      </div>
+     <!--支付密码错误提示选择框-->
+    
+
+  </div>
+  <message></message>
+  <script type="text/javascript">
+    var ua = navigator.userAgent.toLowerCase();	
+    if (/iphone|ipad|ipod/.test(ua)) {
+			$('.mimas input').css({'letter-spacing':'31.5px'});
+		} else if (/android/.test(ua)) {
+			$('.mimas input').css({'letter-spacing':'36.1px'});
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonExt.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/jituorderDetails.css"/>
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+   <script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+  <script src="/js/order/orderS.js?t=as" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/order/orderC.js?t=as" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/order/check.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+  <title>订单详情</title>
+</head>
+<body ng-app="app" ng-controller="checkC" ng-cloak>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="#" class="btnBack backNoText" ng-show="page.showBackbtn" ng-click="back()"> <i class="icon icon-back marR4"></i>
+          </a>
+          <span class="title" >订单详情</span>
+          
+          
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div id="content" class="container content checkOrder " ng-show="layout.index.show">
+   
+     
+     <div class="detailtitle">
+         全程无自费，送上网卡全程无自费，送上网卡全程无自费，送上网卡全程无自费，送上网卡全程无自费，送上网卡
+     </div>
+    
+     <div class="detail-conone">
+       <div class="detail-conone-title">
+         订单信息
+       </div>
+       <div class="detail-conone-content">
+         <p>订单编号：</p>
+         <p>订单状态：</p>
+         <p>预定时间：</p>
+         <p>出发时间：</p>
+         <p>预定数量：</p>
+         <p>产品类型：</p>
+         
+       </div>
+     </div>
+
+     <div class="detail-conone">
+       <div class="detail-conone-title">
+         价格明细
+       </div>
+       <div class="detail-conone-content">
+         <p>成人：<span>X1 合计 ¥1499</span></p>
+         <p>儿童：<span>X0 合计 ¥0</span></p>
+         <p>旅游人身意外险：<span>X1 合计 ¥0</span></p>
+        
+       </div>
+       <div class="detail-conone-more">
+         <div class="detail-conone-mores">
+         备注：此价格包含行程所涉及到的部分门票、餐饮、交通及导游服务费用，详情请参考具体行程。
+         </div>
+         <div class="detail-conone-youhui">
+           <h2>优惠信息</h2>
+           <p>个人vip出游立减<span>-¥149.00</span></p>
+           <p>第三人团游折扣（<font class="detail-color">9.5</font>折）<span>-¥149.00</span></p>
+           <p class="detail-totail">总计 <font class="detail-color">¥2356</font></p>
+         </div>
+       </div>
+     </div>
+
+      <div class="detail-conone">
+       <div class="detail-conone-title">
+         联系人信息
+       </div>
+       <div class="detail-conone-content">
+         <p>姓名：</p>
+         <p>手机号码：</p>
+        
+         
+       </div>
+     </div>
+
+      <div class="detail-conone">
+       <div class="detail-conone-title">
+         旅客信息
+       </div>
+       <div class="detail-conone-content">
+         <p>姓名：</p>
+         <p>身份证：</p>
+         <p>姓名：</p>
+         <p>港澳通行证：</p>
+         
+         
+       </div>
+     </div>
+
+     <div class="detail-conone">
+       <div class="detail-conone-title">
+         发票信息
+       </div>
+       <div class="detail-conone-content">
+         <p>发票抬头：</p>
+         <p>发票收件人：</p>
+         <p>手机号码：</p>
+         <p>发票地址：</p>
+         
+         
+       </div>
+     </div>
+
+
+      <div class="bottom-fixed">
+       <div class="bottom-fixed-left left-color" ng-click="canshu()">取消订单</div>
+       <div class="bottom-fixed-right right-color">立即支付</div>
+      </div>
+    </div>
+     
+  </div>
+  <message></message>
+</body>
+</html>

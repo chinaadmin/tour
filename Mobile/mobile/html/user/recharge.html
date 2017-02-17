@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/recharge.css"/>
+
+
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+ 
+  
+  <script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userC.js?t=14122" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    var app = angular.module('app', ["ui.router","app.controllers","app.services","app.dataStore","ngTouch","app.wechat"])
+    .run(function () { })
+  </script>
+  <title>充值</title>
+</head>
+<body ng-app="app" ng-controller="rechargeC" ng-cloak>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="javascript:history.go(-1);" class="btnBack" ><img src="../../images/user/btnBack.png"/></a>
+          <span class="title" ng-bind="page.title">充值</span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div class="container content" ng-show="layout.index.show" ng-cloak>
+	    <div class="lineGroup flex marT8">
+        <span class="head">充值账户</span>
+        <span class="user flexOne">{{user}}</span>
+      </div>
+	    <div class="lineGroup flex">
+        <span class="head">账户余额</span>
+        <span  class="balance flexOne">¥ {{balance}}</span>
+      </div>
+      <div class="lineGroupE flex marT8 marB8">
+        <span class="head">充值金额</span>
+        <input type="number"  ng-model="number" string-to-number placeholder="请输入金额" class="money">
+        <span class="symbol">元</span>
+      </div>
+      <p class="type">请选择支付方式</p>
+      <div class="lineGroupE flex">
+        <img class="wx" src="../../images/user/icon_weixin@2x.png" width="30px" height="30px"/>
+        <span  class="con flexOne">微信支付</span>
+        <img class="select" src="../../images/user/icon_choose_sel@2x.png" width="22px" height="22px"/>
+        <!--<img src="../../images/user/icon_round_def@2x.png" width="22px" height="22px"/>-->
+      </div>
+	    <div class="btns">
+		    <a href="javascript:" class="btn btnGreen" ng-click="pay()">立即充值</a>
+			</div>
+    </div>
+    
+    <div class="container content" ng-show="layout.success.show" ng-cloak>
+    	<div class="result_box">
+    		<img src="../../images/user/icon_successful@2x.png" width="50px" height="50px"/>
+    		<p class="result">恭喜您，交易成功</p>
+    		<p class="price">{{number}}<span> 元</span></p>
+    	</div>
+    	<div class="lineGroup">
+        <span class="left">微信支付</span>
+        <span class="right">交易时间 2016-10-10 10:10</span>
+      </div>
+      <div class="btns">
+		    <a href="#" class="btn btnGreen" ng-click="ok()">确 定</a>
+			</div>
+    </div>
+    
+    <div class="container content" ng-show="layout.fail.show" ng-cloak>
+    	<div class="result_box">
+    		<img src="../../images/user/icon_failure@2x.png" width="50px" height="50px"/>
+    		<p class="result">支付失败</p>
+    		<p class="warning">很抱歉，系统暂未获取到您支付成功的结果，如您已<span class="orange">支付成功</span>，稍候刷新【我的】即可看到最新的余额信息。</p>
+    	</div>
+    	<div class="lineGroup">
+        <p class="remind">如您需要帮助，可向我们的客服人员咨询。</p>
+      </div>
+      <div class="btns">
+		    <a href="#" class="btn btnGreen" ng-click="ok()">确 定</a>
+			</div>
+    </div>
+  </div>
+  <message></message>
+</body>
+</html>

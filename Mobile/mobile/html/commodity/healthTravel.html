@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="/css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="/css/commodity/domesticTravel.css"/>
+  <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+  
+  <!--<script src="/js/ngResizeImage.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userC.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/user.js" type="text/javascript" charset="utf-8"></script>-->
+  <script src="/js/list/listS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/list/listC.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/list/list.js" type="text/javascript" charset="utf-8"></script>
+  <title>养生游</title>
+</head>
+<body ng-app="app" ng-controller="traveldetailC" ng-cloak>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="javascript:history.go(-1)" class="btnBack"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title">
+            养生游
+          </span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div id="content" class="container content">
+			<section class="introduce" >
+				<img ng-src="{{datas.data.base_attr}}"/>
+				<div class="words">
+				   <!--
+					<h1>深圳</h1>
+					<p>杂志由国家建设部主管，建设部政策研究中心和湖北省建设信息中心共同主办的优秀期刊。选登国内外有关权威人士、理论工作者和实际工作者撰写的建设行业的专题论文、评论性文章</p>
+					-->
+					<p ng-repeat="(k,v) in datas.data.conten_id">
+					<img ng-src="{{v}}"/>
+					
+					</p>
+				</div>
+			</section>
+         <!--
+    	<section class="search">
+       	<input type="text" name="search" id="search" placeholder="搜索线路目的地" class="searchInput form-control"/>
+       	<img class="searchIcon" src="/images/index/icon_serch@2x.png" height="12px" width="12px"/>
+      </section>
+         -->
+			<section class="fbox">
+				<div class="fbox_title">
+					<img src="/images/commodity/lines.png"/>
+					<span>线路</span>
+					<a href="aroundTravelt.html?cat_id={{search_catid}}" class="icon_more">更多</a>
+				</div>
+				<div class="fbox_content">
+
+					<div class="con_item flex" ng-repeat="(k,v) in datas.data.goods">
+						<a href="detail.html?gid={{v.goods_id}}">
+						<img ng-src="{{v.cover}}"/>
+						<div class="list-navbg">
+                          {{v.cat}}
+						</div>
+						</a>
+						<div class="details flexOne" ng-hide="$last">
+							<h3>{{v.name}}</h3>
+							<img ng-src="../../images/commodity/{{v.name}}@2x.png" ng-repeat="(k,v) in v.tag_name"/>
+							<!--
+							<img src="../../images/commodity/阳光出行@2x.png"/>
+							<img src="../../images/commodity/婚恋蜜月@2x.png"/>
+							-->
+							<p><span>{{v.date_time.contens}} 出发</span> | {{v.days}}</p>
+							<p><span class="red">¥ {{v.price}} </span>起</p>
+						</div>
+						<div class="details flexOne" ng-show="$last" ng-touchmove="category_search()">
+							<h3>{{v.name}}</h3>
+							<img ng-src="../../images/commodity/{{v.name}}@2x.png" ng-repeat="(k,v) in v.tag_name"/>
+							<!--
+							<img src="../../images/commodity/阳光出行@2x.png"/>
+							<img src="../../images/commodity/婚恋蜜月@2x.png"/>
+							-->
+							<p><span>{{v.date_time.contens}} 出发</span> | {{v.days}}</p>
+							<p><span class="red">¥ {{v.price}} </span>起</p>
+						</div>
+					</div>
+
+                    <!--
+					<div class="con_item flex">
+						<img src="../../images/commodity/pic@2x.png"/>
+						<div class="details flexOne">
+							<h3>店长推荐！双廊自由骑行 + 五星双温泉 + 玉龙雪山豪华五日游</h3>
+							<img src="../../images/commodity/精品养生@2x.png"/><img src="../../images/commodity/阳光出行@2x.png"/><img src="../../images/commodity/婚恋蜜月@2x.png"/>
+							<p><span>天天 出发</span> | 5天4晚</p>
+							<p><span class="red">¥ 2558 </span>起</p>
+						</div>
+					</div>
+					<div class="con_item flex">
+						<img src="../../images/commodity/pic@2x.png"/>
+						<div class="details flexOne">
+							<h3>店长推荐！双廊自由骑行 + 五星双温泉 + 玉龙雪山豪华五日游</h3>
+							<img src="../../images/commodity/精品养生@2x.png"/><img src="../../images/commodity/阳光出行@2x.png"/><img src="../../images/commodity/婚恋蜜月@2x.png"/>
+							<p><span>天天 出发</span> | 5天4晚</p>
+							<p><span class="red">¥ 2558 </span>起</p>
+						</div>
+					</div>
+					<div class="con_item flex">
+						<img src="../../images/commodity/pic@2x.png"/>
+						<div class="details flexOne">
+							<h3>店长推荐！双廊自由骑行 + 五星双温泉 + 玉龙雪山豪华五日游</h3>
+							<img src="../../images/commodity/精品养生@2x.png"/><img src="../../images/commodity/阳光出行@2x.png"/><img src="../../images/commodity/婚恋蜜月@2x.png"/>
+							<p><span>天天 出发</span> | 5天4晚</p>
+							<p><span class="red">¥ 2558 </span>起</p>
+						</div>
+					</div>
+					<div class="con_item flex">
+						<img src="../../images/commodity/pic@2x.png"/>
+						<div class="details flexOne">
+							<h3>店长推荐！双廊自由骑行 + 五星双温泉 + 玉龙雪山豪华五日游</h3>
+							<img src="../../images/commodity/精品养生@2x.png"/><img src="../../images/commodity/阳光出行@2x.png"/><img src="../../images/commodity/婚恋蜜月@2x.png"/>
+							<p><span>天天 出发</span> | 5天4晚</p>
+							<p><span class="red">¥ 2558 </span>起</p>
+						</div>
+					</div>
+                    -->
+				</div>
+			</section>
+    </div>
+  </div>
+  <message></message>
+</body>
+</html>

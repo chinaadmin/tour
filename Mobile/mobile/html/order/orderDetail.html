@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+
+	<head>
+
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+
+		<meta charset="utf-8">
+		<meta name="description" content="NIM- Responsive One Page Creative Template" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Metrothenes" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css" />
+		<!--<link rel="stylesheet" media="screen" href="../../css/commonExt.css" />-->
+ 		<link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+		<link rel="stylesheet" media="screen" href="../../css/jituorderDetails.css" />
+
+		<script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+		<script src="/js/order/orderS.js?t=as" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/order/orderC.js?t=as" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/order/check.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+		<title>订单详情</title>
+	</head>
+
+	<body ng-app="app" ng-controller="detailC" ng-cloak>
+		<div class="view">
+			<!-- 头部 -->
+			<header class="header-box">
+		      <div class="container">
+		        <div class="activebar">
+		          <a href="javascript:history.go(-1)" class="btnBack"><img src="../../images/user/btnBack.png"/></a>
+		          <span class="title">订单详情</span>
+		        </div>
+		      </div>
+		    </header>
+			<!--  内容 -->
+			<div id="content" class="container content checkOrder">
+				<div class="detailtitle">
+					{{detail.goodsname}}
+				</div>
+				<div class="detail-conone">
+					<div class="detail-conone-title">
+						订单信息
+					</div>
+					<div class="detail-conone-content">
+						<p>订单编号：{{detail.order_sn}}</p>
+						<p>订单状态：{{detail.statusN}}</p>
+						<p>预定时间：{{detail.add_time}}</p>
+						<p>出发时间：{{detail.start_time}}</p>
+						<p>预定数量：{{detail.num}}</p>
+						<p>产品类型：{{detail.name}}</p>
+					</div>
+				</div>
+				<div class="detail-conone">
+					<div class="detail-conone-title">
+						价格明细
+					</div>
+					<div class="detail-conone-content">
+						<p class="flex">
+							<span class="flexOne">成人</span>
+							<span style="width: 40px;">x{{detail.adult_num}}</span>
+							<span>合计</span>
+							<span style="width: 60px;text-align: right;" ng-show="detail.order_type">¥ {{detail.adultPrice}}</span>
+							<span style="width: 60px;text-align: right;" ng-hide="detail.order_type">¥ {{detail.order_amount}}</span>
+						</p>
+						<p class="flex" ng-show="detail.child_num">
+							<span class="flexOne">儿童</span>
+							<span style="width: 40px;">x{{detail.child_num}}</span>
+							<span>合计</span>
+							<span style="width: 60px;text-align: right;">¥ {{detail.childPrice}}</span>
+						</p>
+						<p class="flex" ng-repeat="(k,v) in detail.insuList">
+							<span class="flexOne">{{v.name}}</span>
+							<span style="width: 40px;">x{{v.num}}</span>
+							<span>合计</span>
+							<span style="width: 60px;text-align: right;">¥ {{v.price}}</span>
+						</p>
+					</div>
+					<div class="detail-conone-more">
+						<div class="detail-conone-mores">
+							备注：此价格包含行程所涉及到的部分门票、餐饮、交通及导游服务费用，详情请参考具体行程。
+						</div>
+						<div class="detail-conone-youhui" ng-show="detail.activity.length">
+							<h2 ng-show="hasdiscount">优惠信息</h2>
+							<p ng-repeat="(k,v) in detail.activity">
+								<i ng-show="v.price">{{v.name}} <i ng-show="v.discount">（<font class="detail-color">{{v.discount}}</font>折）</i><span>-¥ {{v.price}}</span></i>
+							</p>
+						</div>
+						<p class="detail-totail">总计
+							<font class="detail-color">¥ {{detail.order_amount}}</font>
+						</p>
+					</div>
+				</div>
+				<div class="detail-conone">
+					<div class="detail-conone-title">
+						联系人信息
+					</div>
+					<div class="detail-conone-content">
+						<p>姓名：{{detail.contact}}</p>
+						<p>手机号码：{{detail.mobile}}</p>
+					</div>
+				</div>
+
+				<div class="detail-conone">
+					<div class="detail-conone-title">
+						旅客信息
+					</div>
+					<div class="detail-conone-content">
+						<div class="list" ng-repeat="(k,v) in detail.travelList">
+							<p>姓名：{{v.traveller_name}}</p>
+							<p>{{v.paper_name}}：{{v.paper_code}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="detail-conone" ng-show="detail.needs_invoice == 1">
+					<div class="detail-conone-title">
+						发票信息
+					</div>
+					<div class="detail-conone-content">
+						<p>发票抬头：{{detail.invoice_payee}}</p>
+						<p>发票收件人：{{detail.receive_name}}</p>
+						<p>手机号码：{{detail.receive_phone}}</p>
+						<p>发票地址：{{detail.receive_address}}</p>
+					</div>
+				</div>
+				<div class="bottom-fixed" ng-show="detail.status == '0'">
+					<div class="bottom-fixed-left left-color" ng-click="cancel()">取消订单</div>
+					<div class="bottom-fixed-right right-color" ng-click="pay()">立即支付</div>
+				</div>
+				<div class="bottom-fixed" ng-show="detail.status == '1'">
+					<div class="service bottom-fixed-left left-color">客服咨询</div>
+					<div class="bottom-fixed-right right-color" ng-click="refund()">申请退款</div>
+				</div>
+				<div class="bottom-fixed" ng-show="(detail.status != '0')&&(detail.status != '1')">
+					<div class="service bottom-fixed-center right-color">客服咨询</div>
+				</div>
+			</div>
+			<!--拨打电话弹窗-->
+			<div class="msgBox d-hide" id="service">
+				<p id="bgNone"></p>
+				<!--拨打电话弹窗-->
+				<div class="consulting_service">
+					<p class="msg">为节省您的时间，请告知客服此线路的产品编号</p>
+					<p class="number">{{detail.goods_sn}}</p>
+					<div class="btns">
+						<button type="phone" class="btn"><a href="tel://400-7777-927"><img src="../../images/commodity/phone.png" height="15px" width="15px"/>400-7777-927</a></button>
+						<button type="phone" class="btn"><a href="tel://0755-82900666"><img src="../../images/commodity/phone.png" height="15px" width="15px"/>0755-82900666</a></button>
+					</div>
+					<img src="../../images/commodity/btn_cancel .png" height="25px" width="25px" class="cancel"/>
+				</div>
+			</div>
+		</div>
+		<message></message>
+		<script type="text/javascript">
+			//弹出客服咨询
+			$(".service").click(function(){
+				$("#service").show();
+				$(".consulting_service").animate({bottom:"44px"},300);
+			});
+			//取消客服咨询
+			$(".cancel").click(function(){
+				$(".consulting_service").animate({bottom:"-250px"},10,function(){
+					$("#service").hide();
+				});
+			});
+			//点击空白处 弹窗隐藏
+			$("#bgNone").click(function(){
+				$(".consulting_service").animate({bottom:"-250px"},10,function(){
+					$("#service").hide();
+				});
+			})
+		</script>
+	</body>
+
+</html>

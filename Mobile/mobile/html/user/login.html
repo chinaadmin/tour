@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/login.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+  <script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+  
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="/js/ngResizeImage.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userC.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/user.js" type="text/javascript" charset="utf-8"></script>
+  <title>用户登录</title>
+</head>
+<body ng-app="app" ng-controller="loginC">
+  <div class="view">
+    <!-- 头部 -->
+    <!--<header class="header-box" style="background: none;">
+      <div class="container">
+        <div class="activebar">
+          <a href="javascript:history.go(-1);" class="btnBack"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title">
+            登录
+          </span>
+        </div>
+      </div>
+    </header>-->
+    <!--  内容 -->
+    <!--<img class="cancel" src="../../images/user/icon_centel@2x.png" height="16px" width="16px" ng-back="ngBack()"/>-->
+    <div id="content" class="container content" style="padding-top:90px;background: none;">
+    	<div class="logo">
+    		<img src="../../images/user/logo@2x.png" width="60px" height="60px"/>
+    	</div>
+		    <div class="inputBox">
+		    	<div class="loginType">
+		    		<span class="" id="login1">吉途会员登录</span>
+		    		<span class="" id="login2">短信验证码登录</span>
+		    	</div>
+		    	<div class="bg">
+		    		<img class="bg-grey" src="../../images/user/bg@2x.png" height="4px" width="100%"/>
+		    		<img class="bg-green" src="../../images/user/sel@2x.png" height="4px" width="50%"/>
+		    	</div>
+		    	<div class="input" id="memberLogin">
+		    		<img class="mobile" src="../../images/user/icon_numble@2x.png" height="17px" width="17px"/>
+			        <input class="form-control" type="number" placeholder="请输入手机号"  ng-model="user.mobile" id="phone" style="ime-mode:disabled" oninput="if(value.length>11)value=value.slice(0,11)" >
+			        <img class="password" src="../../images/user/icon_lock@2x.png" height="17px" width="17px"/>
+			        <input class="form-control" type="password" id="password"  ng-keyup="myKeyup($event)"  placeholder="请输入密码" ng-model="user.password" oninput="if(value.length>11)value=value.slice(0,36)">
+			        <p style="height: 22px;">
+			        	<span class="register" ng-click="toPage('register')">注册账号</span>
+			        	<span class="forget" ng-click="toPage('bindPhone')">忘记密码?</span>
+			        </p>
+		    	</div>
+		    	<div class="input d-hide" id="msgLogin">
+		    			<img class="mobile" src="../../images/user/icon_numble@2x.png" height="17px" width="17px"/>
+			        <input class="form-control" type="number"  placeholder="请输入手机号" ng-model="user.mobile" style="ime-mode:disabled" oninput="if(value.length>11)value=value.slice(0,11)">
+			        <img class="password" src="../../images/user/icon_lock@2x.png" height="17px" width="17px"/>
+			        <input class="form-control" type="number" id="code" placeholder="请输入验证码" ng-keyup="myKeyup($event)" ng-model="user.code" oninput="if(value.length>6)value=value.slice(0,6)">
+			        <a href="#" ng-click="code()" ng-class="user.sendSMS?'active':''" ng-bind="user.text">发送验证码</a>
+			        <p style="height: 22px;">
+			        	<span class="register" ng-click="toPage('register')">注册账号</span>
+			        </p>
+		    	</div>
+		    	<div class="btns">
+			        <a href="#" class="btn btnGreen" ng-click="login()">登 录</a>
+		    	</div>
+		    </div>
+		    <!--<div class="fastLogin">
+		    	<p>微信登录</p>
+		    	<img src="../../images/user/icon_weixin@2x.png" height="32px" width="32px"/>
+		    </div>-->
+    </div>
+  </div>
+  <message></message>
+  <script type="text/javascript">
+  	(function(){
+//			$("#phone").focus();
+  		$("#login1").click(function(){
+  			$("#memberLogin").removeClass("d-hide");
+  			$("#msgLogin").addClass("d-hide");
+  			$("#code").val("");
+  			$(".bg-green").removeClass("moveR")
+  			$(".bg-green").addClass("moveL")
+  		});
+  		$("#login2").click(function(){
+  			$("#memberLogin").addClass("d-hide");
+  			$("#msgLogin").removeClass("d-hide");
+  			$("#password").val("");
+  			$(".bg-green").removeClass("moveL")
+  			$(".bg-green").addClass("moveR")
+  		});
+  	})()
+  </script>
+</body>
+</html>

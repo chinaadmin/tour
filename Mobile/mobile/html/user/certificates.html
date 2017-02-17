@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/certificates.css"/>
+  <!--<link rel="stylesheet" media="screen" href="../../css/deposit.css" />-->
+  <link rel="stylesheet" media="screen"  href="../../css/mobiscroll_date.css" rel="stylesheet" />
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script> 
+  <script src="/js/plugin/jpeg_encoder_basic.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/plugin/exif.js" type="text/javascript" charset="utf-8"></script>
+   
+  <script src="/js/ngResizeImage.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/IDValidator.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/GB2260.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userC.js?t=14122" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    var app = angular.module('app', ["ui.router","app.controllers","app.services","app.dataStore","ngTouch","ngResizeImage"])
+    .run(function () { })
+  </script>
+  <title>修改证件号</title>
+</head>
+<body ng-app="app" ng-controller="certificatesC" ng-cloak>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="#" class="btnBack" ng-show="page.showBackbtn" ng-click="back()"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title" ng-hide="page.title">修改证件号</span>
+          <span class="title" ng-bind="page.title"></span>
+          <span class="add" ng-hide="!layout.index.show" ng-click="switchLayout('add');addPassenger.clear()">添加</span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div id="content" class="container content" ng-show="layout.index.show">
+	      <div class="nopassenger" ng-show="noCertificates">
+		      <img src="../../images/user/icon_expression@2x.png" width="60px" height="60px"/>
+		      <p>没有证件号</p>
+	      </div>
+        <div class="lineGroup flex marT8" ng-repeat="(k,v) in info">
+	        <!--<span class="name">{{v.pe_name}}</span>-->
+	        <span class="certificate">{{v.name}}</span>
+	        <span  class="number flexOne">{{v.ce_number}}</span>
+	        <i class="i_edit" ng-click="switchLayout('edit');editPassenger.setPassenger(v)"></i>
+	      </div>
+        <!--<div class="lineGroup flex marT8">
+	        <span class="name">周慧</span>
+	        <span class="certificate">身份证</span>
+	        <span  class="number flexOne" ng-model="user.rname">362202199108136814</span>
+	        <i class="i_edit" ng-click="switchLayout('add');"></i>
+	      </div>-->
+    </div>
+    
+    <!--添加-->
+    <div class="container content" ng-show="layout.add.show">
+      <div class="lineGroup flex borderD5">
+        <!--<span class="type">证件类型<img src="../../images/user/icon_an.png" style="width:11px;margin-left:5px;"/></span>-->
+        <select class="cards" ng-model="addPassenger.certificates.type" style="padding-left:16px;">
+        	<option value="" disabled="disabled">证件类型</option>
+					<option value="1">身份证</option>
+					<option value="2">港澳通行证</option>
+					<option value="3">护照</option>
+					<option value="4">台湾通行证</option>
+					<option value="5">军官证</option>
+					<option value="6">台胞证</option>
+					<option value="7">回乡证</option>
+					<option value="8">户口本</option>
+					<option value="9">出生证明</option>
+					<option value="10">其他证件</option>
+				</select>
+				<img src="../../images/user/icon_an.png" style="width:11px;height:6px;margin:20px 5px 0;"/>
+        <input type="text" placeholder="必填" class="flexOne" ng-model="addPassenger.certificates.number"/>
+        <!--<i class="i_add"></i>-->
+      </div>
+      <!--<div class="lineGroup flex borderD5 d-hide">
+        <span class="type">英文名</span>-->
+        <!--<input type="text" placeholder="必填" class="flexOne" ng-model="addPassenger.en"/>  //js show()方法后，样式失效了。。。--> 
+        <!--<input type="text" placeholder="必填" ng-model="addPassenger.en" style="position:relative;bottom:1px;width:70%;"/>
+     	</div>-->
+      <!--<div class="lineGroup flex">
+        <select style="padding-left:16px">
+					<option value="证件类型">证件类型<i class="i_an"></i></option>
+					<option value="身份证">身份证</option>
+					<option value="港澳通行证">港澳通行证</option>
+					<option value="护照">护照</option>
+					<option value="学生证">学生证</option>
+					<option value="军人证">军人证</option>
+					<option value="驾驶证">驾驶证</option>
+				</select>
+				<img src="../../images/user/icon_an.png" style="width:11px;height:6px;margin:20px 5px 0;"/>
+        <input type="number" placeholder="必填" class="flexOne"/>
+        <i class="i_delete"></i>
+      </div>-->
+	    <div class="btns" style="padding: 0 12px;">
+		    <a href="#" class="btn btnGreen" ng-click="addPassenger.add()">确定</a>
+			</div>
+    </div>
+    
+    <!--修改-->
+    <div class="container content" ng-show="layout.edit.show">
+      <div class="lineGroup flex borderD5" cardId="{{editPassenger.certificates.ce_id}}">
+        <!--<span class="type">证件类型<img src="../../images/user/icon_an.png" style="width:11px;margin-left:5px;"/></span>-->
+        <select class="cards" style="padding-left:16px;" ng-model="editPassenger.certificates.ce_type">
+        	<option value="" disabled="disabled">证件类型</option>
+					<option value="1">身份证</option>
+					<option value="2">港澳通行证</option>
+					<option value="3">护照</option>
+					<option value="4">台湾通行证</option>
+					<option value="5">军官证</option>
+					<option value="6">台胞证</option>
+					<option value="7">回乡证</option>
+					<option value="8">户口本</option>
+					<option value="9">出生证明</option>
+					<option value="10">其他证件</option>
+				</select>
+				<img src="../../images/user/icon_an.png" style="width:11px;height:6px;margin:20px 5px 0;"/>
+        <input type="text" placeholder="必填" class="flexOne" ng-model="editPassenger.certificates.ce_number"/>
+        <!--<i class="i_add"></i>-->
+      </div>
+	    <div class="btns">
+		    <a href="#" class="btn btnGreen" ng-click="editPassenger.edit()">确定</a>
+			</div>
+    </div>
+    
+  </div>
+  <message></message>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		var TEMP = '<div class="lineGroup flex borderD5">'
+					        +'<select class="cards" ng-model="passenger.certificates.type" style="padding-left:16px">'
+									+	'<option value="">证件类型</option>'
+									+	'<option value="身份证">身份证</option>'
+									+	'<option value="港澳通行证">港澳通行证</option>'
+									+	'<option value="护照">护照</option>'
+									+	'<option value="台湾通行证">台湾通行证</option>'
+									+	'<option value="军官证">军官证</option>'
+									+	'<option value="台胞证">台胞证</option>'
+									+	'<option value="回乡证">回乡证</option>'
+									+	'<option value="户口本">户口本</option>'
+									+	'<option value="出生证明">出生证明</option>'
+									+	'<option value="其他证件">其他证件</option>'
+									+'</select>'
+									+'<img src="../../images/user/icon_an.png" style="width:11px;height:6px;margin:25px 5px 0;"/>'
+					        +'<input type="number" placeholder="必填" class="flexOne" ng-model="passenger.certificates.number"/>'
+					        +'<i class="i_add"></i>'
+					      +'</div>';
+//					      +'<div class="lineGroup flex borderD5 d-hide">'
+//					      	+'<span class="type">英文名</span>'
+//					      	+'<input type="text" placeholder="必填" ng-model="passenger.en" style="position:relative;bottom:1px;width:70%;"/>'
+//					      +'</div>';
+//			$(".lineGroup .cards").live("click",function(){  //有英文名的情况
+//				var text = $(this).find("option:selected").text();
+//				if((text=="港澳通行证")||(text=="护照")){
+//					$(this).parent().next().show();
+//				}else{
+//					$(this).parent().next().hide()
+//				}
+//			});
+			
+  	})
+  </script>
+</body>
+</html>

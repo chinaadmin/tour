@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <link rel="stylesheet" media="screen" href="../../bower_components/bootstrap/3.3.0/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commodity/detail.css"/>
+
+  <script src="../../bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script> 
+  <script src="../../js/interface.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/dataStore.js" type="text/javascript" charset="utf-8"></script>  
+
+  <script src="/js/commodity/commodityS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/commodity/commodityC.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/commodity/commodity.js" type="text/javascript" charset="utf-8"></script>
+  
+ <script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ngWechat.js?t=8446546" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/home/angular-carousel.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Swiper  css-->
+<link rel="stylesheet" media="screen" href="../../bower_components/swiper/3.1.7/swiper.min.css"/>
+
+  <title>产品详情</title>
+</head>
+<body ng-app="app" ng-controller="detailC" ng-loading ng-cloak>
+  <div class="view" id="view">
+  	<div class="cover" ng-hide="hidden">
+  	</div>
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="javascript:history.go(-1)" class="btnBack"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title">产品详情</span>
+        </div>
+      </div>
+    </header>
+
+    <!--  内容 -->
+    <div id="content" class="container content">
+    	<div class="pictures">
+    		<p class="name">{{detail.name}}</p>
+	      <!-- banner轮播图 -->
+		    <div class="swiper-container swiper-container-horizontal banner-box" >
+		        <div class="swiper-wrapper">
+		        </div>
+		        <!-- Add Pagination -->
+		        <div class="swiper-pagination"></div>
+		    </div>
+	      <!-- 轮播end -->
+				<section class="title" >
+					<p>
+						<span ng-repeat="(k,v) in detail.tag_name">{{v.name}}</span>
+						<em>¥ {{detail.price}}<i> 起</i></em>
+					</p>
+				</section>
+    	</div>
+
+			
+			<section class="time">
+				<span class="left">选择出行日期</span>
+				<span class="right">
+					<span class="scheduled_time">至少提前{{detail.advance}}天预订</span>
+					<a ng-click="toChooseDate()"><img src="../../images/commodity/icon_enter@2x.png" height="22px" width="22px"/></a>
+				</span>
+				<!--<span class="start_time" id="start_time">{{detail.date_time.contens}}出发</span>-->
+			</section>
+			
+			<section class="details">
+				<!--<table>
+					<tr><th>产品编号</th><td>{{detail.goods_sn}}</td></tr>
+					<tr><th>产品属性</th><td>{{detail.type}}</td></tr>
+					<tr><th>出发地</th><td>{{detail.depart}}</td></tr>
+					<tr><th>目的地</th><td>{{detail.destination}}</td></tr>
+					<tr><th>出游天数</th><td>{{detail.days}}</td></tr>
+					<tr><th>交通方式</th><td>{{detail.traffic}}</td></tr>
+					<tr><th>住宿标准</th><td>{{detail.accommodation}}</td></tr>
+				</table>-->
+				<table>
+					<thead>
+						<tr>
+							<td><img src="../../images/commodity/icon_category @2x.png" height="32px" width="32px" class="detail-padding"/>{{detail.type}}</td>
+							<td><img src="../../images/commodity/icon_Days@2x.png" height="32px" width="32px" class="detail-padding" />{{detail.days}}</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src="../../images/commodity/icon_traffic@2x.png" height="32px" width="32px" class="detail-padding"/>{{detail.traffic}}</td>
+							<td><img src="../../images/commodity/icon_accommodation@2x.png" height="32px" width="32px" class="detail-padding"/>{{detail.accommodation}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>{{detail.depart}}————{{detail.destination}}</p>
+			</section>
+			<!--<section class="more" ng-click="toSection2()">
+				<p>上拉显示更多详情</p>
+			</section>-->
+			
+    </div>
+    <div style="width: 100%;height: 44px;">
+			<div id="top" class="a">
+					<nav class="top">
+						<!--<a href="#a" class="active">行程特色</a>
+						<a href="#b">行程介绍</a>
+						<a href="#c">行程费用</a>
+						<a href="#d">温馨提示</a>-->
+						<span name="#a" class="active">行程特色</span>
+						<span name="#b">行程介绍</span>
+						<span name="#c">行程费用</span>
+						<span name="#d">温馨提示</span>
+					</nav>
+			</div>
+    </div>
+		<div class="container content" id="content2" style="padding-top: 0 !important;">
+			<!--<div class="tip">
+				<p>下拉返回</p>
+			</div>-->
+			<section class="introduce">
+				<div class="items">
+					<div class="item item_1" id="a">
+						<h2>行程特色</h2>
+						<div class="feature">
+							<p class="small" ng-bind-html="detail.features.feature"></p>
+							<!--<p class="flex"><i class="icon_circle"></i><span class="flexOne">哈尔滨、镜泊湖、长白山天池、沈阳故宫、自然景观+历史人文，一网打尽，一次出游全部体验</span></p>
+							<p class="flex"><i class="icon_circle"></i><span class="flexOne">独立成团，区间乘坐最美高铁无缝衔接，避免长时间舟车劳顿。</span></p>-->
+							<!--<img ng-repeat="x in detail.features.imgsize" ng-src="{{x.imgurl}}" err-src="../../images/commodity/day1.png" title="{{x.imgurl}}"/>-->
+						</div>
+					</div>
+					<div class="item item_2" id="b">
+						<h2>行程介绍</h2>
+						<div class="days" ng-repeat="(k,v) in detail.introduces">
+							<h3>Day {{$index+1}}</h3>
+							<p><span>出发地及目的地</span><i class="icon_car"></i><span>{{v.start_destination}}</span></p>
+							<p><span>餐饮</span><i class="icon_food"></i><span>{{v.food_beverage}}</span></p>
+							<p><span>住宿</span><i class="icon_hotel"></i><span>住[ {{v.accommodation}} ]</span></p>
+							<p class="small" ng-bind-html="v.introduce"></p>
+							<!--<img ng-repeat="x in v.imgsize" ng-src="{{x.imgurl}}" err-src="../../images/commodity/day2.png" title="{{x.imgurl}}"/>-->
+						</div>
+					</div>
+					<div class="item item_3" id="c">
+						<h2>行程费用</h2>
+						<div class="travel_costs">
+						    <!--
+							<p>费用：{{detail.price}}/成人，{{detail.price}}/儿童，880元/单房差</p>
+							<p>团期：7月7日/14日/21日/28日</p>
+							<p>费用包含：</p>
+							<p class="small"><span>机票：</span>含往返程机票、机场建设费和燃油附加费；（不含航空公司临时通知的燃油附加费升幅） </p>
+							<p class="small"><span>交通：</span>空调旅游巴士；（按人数定车型，保证一人一个正坐车位）</p>
+							<p class="small"><span>门票：</span>行程所列景区首道大门票</p>
+							<p class="small"><span>导游：</span>当地优秀导游</p>
+							<p class="small"><span>餐饮：</span>5早7正（八菜一汤、十人一围、全程正餐餐标30元/人） 说明：不足十人旅行社根据实际人数减少菜的数量，旅游社有权根据人数多少安排分桌和菜的数量。</p>
+							<p class="small"><span>酒店：</span>准四酒店，长白山两晚准五温泉酒店（参考酒店：沈阳奉天缘、维也纳、岷山大酒店；长白山东沃或一山一蓝大酒店；敦化敦柏、泰格大酒店；哈尔滨金世纪、濠滨、班夫、龙达假日酒店。以上参考酒店或同级）</p>
+							-->
+							<p class="small" ng-bind-html="detail.travel_costs.travel_cost"></p>
+							<!--<img ng-repeat="x in detail.travel_costs.imgsize" ng-src="{{x.imgurl}}" err-src="../../images/commodity/day3.png" title="{{x.imgurl}}"/>-->
+						</div>
+					</div>
+					<div class="item item_4" id="d">
+						<h2>温馨提示</h2>
+						<div class="reminders">
+							<p class="small" ng-bind-html="detail.reminders.reminder"></p>
+							<!--<p class="small">1,儿童团费含早餐费用、车费、不占床位； 12岁以下小童不占床、不含门票、含半价正餐、如超高请当地现补差价</p>
+							<p class="small">2,如出现单男或单女参团出现无法安排拼住时，要补单人房差和船差。</p>
+							<p class="small">3,此团为广东省内散客拼团，保证10名成人报名即可成团，派当地导游为您服务；如收客人数不足10人时，本公司会提前7天通知客人，客人可选择延期出发、更改线路出行、或退回所交团款，不承担违约责任。</p>
+							<p class="small">4,游客所乘坐的航班及在当地入住的准确酒店、航班领队等相关信息我社会提前以出团行程单的形式确认给您，以此行程单为准。行程中的酒店和航班为备选方案附行程。</p>-->
+							<!--<img ng-repeat="x in detail.reminders.imgsize" ng-src="{{x.imgurl}}" err-src="../../images/commodity/day3.png" title="{{x.imgurl}}"/>-->
+						</div>
+					</div>
+				</div>
+			</section>
+			
+		</div>
+		
+		<div class="toTop d-hide">
+			<a><img src="../../images/commodity/icon_back_top@2x.png" width="50px" height="50px"/></a>
+		</div>
+		
+		<div class="msgBox d-hide" id="service">
+			<p id="bgNone"></p>
+			<!--拨打电话弹窗-->
+			<div class="consulting_service">
+				<p class="msg">为节省您的时间，请告知客服此线路的产品编号</p>
+				<p class="number">{{detail.goods_sn}}</p>
+				<div class="btns">
+					<button type="phone" class="btn"><a href="tel://400-7777-927"><img src="../../images/commodity/phone.png" height="15px" width="15px"/>400-7777-927</a></button>
+					<button type="phone" class="btn"><a href="tel://0755-82900666"><img src="../../images/commodity/phone.png" height="15px" width="15px"/>0755-82900666</a></button>
+				</div>
+				<img src="../../images/commodity/btn_cancel .png" height="25px" width="25px" class="cancel"/>
+			</div>
+			<!--时间弹窗-->
+			<div id="date1"></div> 
+		</div>
+		
+		<footer>
+			<nav class="flex">
+				<div class="service">客服咨询</div>
+				<div class="reservation" ng-click="toChooseDate()">立即预订</div>
+			</nav>
+		</footer>
+  </div>
+
+  <div class="msgBox" ng-show="page.msg"  style="display:none">
+    <div class="wrap">
+      <h3>尚未登陆，请先登陆再进行操作！</h3>
+      <div class="btnBox">
+        <a class="btn btnCancle" ng-click="page.msg=!page.msg">取消</a>
+        <a class="btn btnSure" ng-click="toPage('cart')">确定</a>
+      </div>
+    </div>
+  </div>
+  <message style="display:none"></message>
+
+<!-- Swiper  css-->
+<script src="../../bower_components/swiper/3.1.7/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(".toTop").click(function(){
+		$("html,body").stop().animate({scrollTop:0},500);
+	});
+	//弹出客服咨询
+	$(".service").click(function(){
+		$("#service").show();
+		$(".consulting_service").animate({bottom:"44px"},300);
+	});
+	//取消客服咨询
+	$(".cancel").click(function(){
+		$(".consulting_service").animate({bottom:"-250px"},10,function(){
+			$("#service").hide();
+		});
+	});
+	//弹出时间选择
+	$(".start_time").click(function(){
+		$("#service").show();
+		$("#date1").animate({bottom:0},300);
+	});
+	//点击空白处 弹窗隐藏
+	$("#bgNone").click(function(){
+		var height = -$("#date1").height()+"px";
+//		console.log(height);
+		$("#date1").animate({bottom:height},300,function(){
+		$("#service").hide();
+		});
+		$(".consulting_service").animate({bottom:"-250px"},10,function(){
+			$("#service").hide();
+		});
+	});
+</script>
+</body>
+</html>

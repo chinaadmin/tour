@@ -1,0 +1,84 @@
+.view .header-box .add{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+.view .content .borderD5{
+	border-bottom: 1px solid #D5D5D5;
+}
+.view .lineGroup{
+	background-color: #fff;
+	margin-top: 8px;
+	/*border-top: 1px solid #D5D5D5;*/
+	border: none;
+}
+.view .lineGroup input,select{
+	opacity: 1;
+	color: #202020;
+}
+.view .lineGroup i.i_edit{
+	margin:0 16px;
+	background-image: url(../images/user/icon_edit.png);
+	background-size:100%;
+	background-repeat:no-repeat ;
+	width:16px;
+	background-position: center;
+}
+.view .lineGroup i.i_add{
+	margin:0 16px;
+	background-image: url(../images/user/icon_+.png);
+	background-size:100%;
+	background-repeat:no-repeat ;
+	width:22px;
+	background-position: center;
+}
+.view .lineGroup i.i_delete{
+	margin:0 16px;
+	background-image: url(../images/user/icon_－.png);
+	background-size:100%;
+	background-repeat:no-repeat ;
+	width:22px;
+	background-position: center;
+}
+.view .lineGroup i.i_an{
+	margin:0 16px;
+	background-image: url(../images/user/icon_an.png);
+	background-size:100%;
+	background-repeat:no-repeat ;
+	width:11px;
+	background-position: center;
+}
+.view .lineGroup span.certificate{
+	/*width: 70px;*/
+	font-size: 15px;
+	color: #202020;
+	padding: 0 12px 0 16px;
+	font-weight: normal;
+}
+.view .lineGroup span.number{
+	font-size: 15px;
+	color: #202020;
+	font-weight: normal;
+	
+}
+.view .lineGroup span.type{
+	padding: 0 16px;
+}
+.view .content .nopassenger{
+	margin: 120px auto 0;
+	text-align: center;
+}
+.view .content .nopassenger img{
+	margin: 0 auto 20px;
+	display: block;
+}
+.view .content .nopassenger p{
+	font-size: 12px;
+	color: #808080;
+}
+/*.USER_AGE{
+	position: relative;
+    top: -1px;
+}*/

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="/css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="/css/commodity/domesticTravel.css"/>
+  <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+  
+  <!--<script src="/js/ngResizeImage.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userC.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/user.js" type="text/javascript" charset="utf-8"></script>-->
+  <script src="/js/list/listS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/list/listC.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/list/list.js" type="text/javascript" charset="utf-8"></script>
+  <title>参观基地介绍</title>
+</head>
+<body ng-app="app" ng-controller="travellistC" ng-cloak >
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="javascript:history.go(-1)" class="btnBack"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title">
+            参观基地介绍
+          </span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div id="content" class="container content">
+        <!--
+    	<section class="search">
+       	<input type="text" name="search" id="search" placeholder="搜索线路目的地" class="searchInput form-control"/>
+       	<img class="searchIcon" src="/images/index/icon_serch@2x.png" height="12px" width="12px"/>
+        </section>
+         -->
+    	<section class="fbox">
+				<div class="fbox_content">
+                   <!--
+					<nav class="nav-box flex">
+
+						<a href="aroundTravels.html?dt_id={{v.dt_id}}&cat_id={{search_catid}}" class="flexOne" ng-repeat="(k,v) in datas.data"><img ng-src="{{v.img_url}}"/><p>{{v.dt_name}}</p></a>
+                       
+					</nav>
+					-->
+					<div class="imglist">
+                      <div class="imglist-one" ng-repeat="(k,v) in datas.data">
+                       <a href="healthTravel.html?gid={{v.base_id}}" ng-hide="$last">
+                        <img ng-src="{{v.base_attr}}"/>
+                        <div class="img-title">
+                          <h2>{{v.title}}</h2>
+                          <p>{{v.s_title}}</p>
+                        </div>
+                        </a>
+                        <a href="healthTravel.html?gid={{v.base_id}}" ng-show="$last" ng-touchmove="more_base()">
+                        <img ng-src="{{v.base_attr}}"/>
+                        <div class="img-title">
+                          <h2>{{v.title}}</h2>
+                          <p>{{v.s_title}}</p>
+                        </div>
+                        </a>
+                      </div>
+					</div>
+				</div>
+			</section>
+			
+			
+    </div>
+  </div>
+  <message></message>
+</body>
+</html>

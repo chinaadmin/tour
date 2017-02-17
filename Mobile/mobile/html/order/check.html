@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+
+	<head>
+
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+
+		<meta charset="utf-8">
+		<meta name="description" content="NIM- Responsive One Page Creative Template" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Metrothenes" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" media="screen" href="../../css/commonExt.css" />
+		<link rel="stylesheet" media="screen" href="../../css/jituorderDetail.css" />
+
+		<script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+		<script src="/js/order/orderS.js?t=as" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/order/orderC.js?t=as" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/order/check.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+		<title>填写出行信息</title>
+	</head>
+
+	<body ng-app="app" ng-controller="checkC" ng-loading ng-cloak>
+		<div class="view">
+			<!-- 头部 -->
+			<header class="header-box">
+				<div class="container">
+					<div class="activebar">
+						<a href="#" class="btnBack backNoText" ng-show="page.showBackbtn" ng-click="back()"> <i class="icon icon-back marR4"></i>
+						</a>
+						<span class="title" ng-hide="page.title">填写出行信息</span>
+						<span class="title title-color" ng-bind="page.title"></span>
+						<p class="positions" ng-show="page.title=='选择保险'" ng-click="switchLayout('index');payby.onSwitch()">保存</p>
+						<p class="positions" ng-show="page.title=='选择优惠'" ng-click="switchLayout('index');paybys.onSwitch()">保存</p>
+						<p class="positions" ng-show="page.title=='选择发票抬头'" ng-click="switchLayout('index');paybyt.onSwitch()">保存</p>
+						<p class="positions" ng-show="page.title=='选择收件人'" ng-click="switchLayout('index');paybyq.onSwitch()">保存</p>
+					</div>
+				</div>
+			</header>
+			<!--  内容 -->
+			<div id="content" class="container content checkOrder" ng-show="layout.index.show">
+				<div class="title-price">
+					<div class="title-prices">
+						<h2>{{data.data.name}}</h2>
+						<p><span>¥{{data.data.price}}</span> 起</p>
+					</div>
+				</div>
+				<!--联系人-->
+				<div class="lxren">
+					<div class="detailcontitle">
+						联系人信息
+					</div>
+					<ul>
+						<li class="flex"><span class="pos-index">真实姓名：</span><input type="text" name="realname" ng-model="realname" class="flexOne inputs" /></li>
+						<li class="flex"><span class="pos-index">手机号码：</span><input type="number" name="phone" ng-model="phone" class="flexOne inputs" /></li>
+					</ul>
+				</div>
+				<!--旅客-->
+				<div class="lxren">
+					<div class="detailcontitle">
+						选择旅客
+						<a href="javascript:" ng-click="topaget('passengersel')"><img src="../../jituimages/icon_enter@2x.png"></a><span>{{my_passenger.mess}}</span>
+					</div>
+					<ul>
+						<li ng-repeat="(k,v) in info" ng-show="v.check">旅客{{v.num_index}}<span>{{v.pe_name}}/{{v.certificates[0].ce_number}}</span></li>
+						<li ng-repeat="(k,v) in shens.data.slice().reverse()">旅客{{v.id}}<span></span></li>
+					</ul>
+				</div>
+				<!--保险-->
+				<div class="lxren">
+					<div class="detailcontitle">
+						选择保险
+						<a href="javascript:" ng-click="switchLayout('payby')"><img src="../../jituimages/icon_enter@2x.png"></a><span ng-hide="baoxian">{{payby.mess}}</span><span ng-show="baoxian">选择保险</span>
+					</div>
+					<ul>
+						<li ng-repeat="(k,v) in datas.data" ng-show="v.check" class="flex"><span class="pos-index flexOne">{{v.name}}：</span><span><font class="colorss">{{v.costs}}元</font><font class="font-11">/人X{{senddata.totalnum}}</font></span></li>
+					</ul>
+				</div>
+				<!--优惠-->
+				<div class="lxren">
+					<div class="detailcontitle">
+						优惠
+						<a href="javascript:" ng-click="switchLayout('paybys')" ng-hide="hasNOdiscount"><img src="../../jituimages/icon_enter@2x.png"></a>
+						<a href="javascript:" ng-show="hasNOdiscount"><img src="../../jituimages/rigt_arrow_def@2x.png"></a>
+						<span>{{mess}}</span>
+					</div>
+					<ul>
+						<li ng-repeat="(k,v) in datalist.data" ng-show="v.check">
+							{{v.name}}：<span><font class="colorss">-{{v.price | number}}元</font></span></li>
+						<li ng-show="ison">
+							积分抵扣：<span><font class="colorss">-{{creditsnum | number}}元</font></span></li>
+					</ul>
+				</div>
+				<!--发票-->
+				<div class="lxren detail-marginbottom qubie">
+					<div class="detailcontitle">
+						发票
+						<span ng-class="bestCoin?'selected':''" ng-click="checkuse()"><a href="javascript:" class="dianji"></a></span>
+					</div>
+					<div class="fapiao" ng-show="bestCoin">
+						<div >
+            <div class="detailcontitle" ng-hide="paybyt.invoice_payee">
+              发票抬头：
+              <a href="javascript:" ng-click="switchLayout('paybyt')"><img src="../../jituimages/icon_enter@2x.png"></a>
+            </div>
+            <ul>
+              <li ng-repeat="(k,v) in datat.invoiceList" ng-show="v.check">{{v.invoicePayee}} <a href="javascript:" ng-click="switchLayout('paybyt')"><img src="../../jituimages/icon_enter@2x.png"></a></li>
+
+            </ul>
+            <div class="detailcontitle" ng-hide="paybyq.receive_name">
+              收件人信息(用于发票邮寄)：
+              <a href="javascript:" ng-click="switchLayout('paybyq')"><img src="../../jituimages/icon_enter@2x.png"></a>
+            </div>
+            <ul>
+              <li ng-repeat="(k,v) in datatlist.recaddressList" ng-show="v.check" class="send">{{v.name}}/{{v.mobile}}<br/>{{v.localtion}} {{v.town_name}} {{v.address}} <a href="javascript:" ng-click="switchLayout('paybyq')"></a></li>
+            </ul>
+          </div>
+					</div>
+
+
+          <!--
+					<div class="d-hide">
+						<div class="detailcontitle">
+							发票抬头：
+							<a href="javascript:" ng-click="switchLayout('paybyt')"><img src="../../jituimages/icon_enter@2x.png"></a>
+						</div>
+						<ul>
+							<li ng-repeat="(k,v) in datat.invoiceList" ng-show="v.check">{{v.invoicePayee}}</li>
+						</ul>
+						<div class="detailcontitle">
+							收件人信息(用于发票邮寄)：
+							<a href="javascript:" ng-click="switchLayout('paybyq')"><img src="../../jituimages/icon_enter@2x.png"></a>
+						</div>
+						<ul>
+							<li ng-repeat="(k,v) in datatlist.recaddressList" ng-show="v.check">{{v.name}}/{{v.mobile}}<br/>{{v.localtion}} {{v.town_name}} {{v.address}}</li>
+						</ul>
+					</div>
+            -->
+				</div>
+				<footer class="foot-box bottom-fixed">
+					<div class="bottom-fixed-left" ng-click="canshu()"><i>¥</i> {{priceSum | number}} <span>费用明细</span></div>
+					<div class="bottom-fixed-right" ng-click="tijiao()">立即预订</div>
+				</footer>
+			</div>
+
+			<!--费用明细框-->
+			<div class="msgBox beijinss">
+				<div class="allwidth" id="showsels">
+					<div class="allwidths cpcstitle">
+						费用明细
+						<a href="javascript:" class="clockss" ng-click="cancel()"><img src="../../jituimages/guanbi.jpg" /></a>
+					</div>
+					<div class="moneylist">
+						<div class="moneylist-ul">
+							成人
+							<p>x{{senddata.adultNum}} <span>¥{{senddata.adultPrice*senddata.adultNum | number}}</span></p>
+						</div>
+						<div class="moneylist-ul" ng-show="senddata.childNum">
+							儿童
+							<p>x{{senddata.childNum}} <span>¥{{senddata.childPrice*senddata.childNum | number}}</span></p>
+						</div>
+						<div class="moneylist-ul" ng-repeat="(k,v) in datas.data" ng-show="v.check">
+							{{v.name}}
+							<p>x{{senddata.totalnum}} <span>¥{{senddata.totalnum*v.costs | number}}</span></p>
+						</div>
+						<div class="moneylist-ul" ng-repeat="(k,v) in datalist.data" ng-show="v.check">
+							{{v.name}}
+							<p> <span>-¥{{v.price | number}}</span></p>
+						</div>
+						<div class="moneylist-ul" ng-show="ison&&credits">
+							积分抵扣
+							<p> <span>-¥{{creditsnum | number}}</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--费用明细框-->
+			
+			<!--保险-->
+			<div class="container content payby" ng-show="layout.payby.show">
+				<p class="select">
+					<span class="item " ng-click="payby.check(v)" ng-class="v.check?'active':''" ng-repeat="(k,v) in datas.data">
+	          <i class="floats"><font class="colorss">{{v.costs | number}}元</font>/人</i>
+	          <em></em>{{v.name}}
+	        </span>
+				</p>
+			</div>
+			<!--保险-->
+			
+			<!--发票抬头-->
+			<div class="container content payby" ng-show="layout.paybyt.show">
+				<p class="select">
+					<span class="item " ng-click="paybyt.check(v)" ng-class="v.check?'active':''" ng-repeat="(k,v) in datat.invoiceList">
+	          <em></em>{{v.invoicePayee}}
+	        </span>
+				</p>
+				<div class="addmessage" ng-click="topage('addfapiao')">
+					添加
+				</div>
+			</div>
+			<!--发票抬头-->
+			
+			<!--收件人-->
+			<div class="container content payby" ng-show="layout.paybyq.show">
+				<p class="select">
+					<span class="item ydizhis" ng-click="paybyq.check(v)" ng-class="v.check?'active':''" ng-repeat="(k,v) in datatlist.recaddressList">
+	          <i class="floats">{{v.mobile}}</i>
+	          <em></em>{{v.name}}<br/><font class="marginst">{{v.localtion}} {{v.town_name}} {{v.address}}</font>
+	        </span>
+				</p>
+				<div class="addmessage" ng-click="topage('addsend')">
+					添加收件人
+				</div>
+			</div>
+			<!--收件人-->
+			
+			<!--优惠-->
+			<div class="container content payby" ng-show="layout.paybys.show">
+				<p class="select">
+					<span class="item " ng-click="paybys.check(v)" ng-class="v.check?'active':''" ng-repeat="(k,v) in datalist.data">
+	          <i class="floats"><font class="colorss">-{{v.price | number}}元</font></i>
+	          <em></em>{{v.name}}
+	        </span>
+					<span class="item " ng-click="checks(v)" ng-class="ison?'active':''">
+	          <i class="floats"><font class="colorss">-{{creditsnum | number}}元</font></i>
+	          <em></em>积分抵扣
+	        </span>
+				</p>
+			</div>
+			<!--优惠-->
+
+		</div>
+		<message></message>
+	</body>
+
+</html>

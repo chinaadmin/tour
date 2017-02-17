@@ -1,0 +1,77 @@
+.view .header-box .add{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+.view .content .borderD5{
+	border-bottom: 1px solid #D5D5D5;
+}
+.view .content .btns{
+	position: fixed;
+    bottom: 0;
+    max-width: 1024px;
+}
+.view .lineGroup{
+	background-color: #fff;
+	height: 54px;
+	line-height: 54px;
+	padding: 0 12px;
+}
+.view .lineGroup .type{
+	margin-right: 20px;
+}
+.view .lineGroup input,select,form{
+	opacity: 1;
+	color: #606060;
+	height: 54px;
+	margin: 0;
+}
+.view .lineGroup form{
+	width: 50%;
+	display: inline-flex;
+}
+.view .lineGroup form input.nocheck{
+	width: 44px;
+	background-image: url(../../images/user/icon_round_def@2x.png);
+	background-size: 50%;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+.view .lineGroup form input.checked{
+	width: 44px;
+	background-image: url(../../images/user/icon_choose_sel@2x.png);
+	background-size: 50%;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+.view .lineGroup i.delete{
+	margin-right: 12px;
+	background-image: url(../images/user/icon_reduction@2x.png);
+	background-size:100%;
+	background-repeat:no-repeat ;
+	width:22px;
+	background-position: center;
+	display: none;
+}
+.view .lineGroup i.i_edit{
+	background-image: url(../images/user/icon_enter@2x.png);
+	background-size:100%;
+	background-repeat:no-repeat ;
+	width:6px;
+	background-position: right center;
+}
+.view .content .nopassenger{
+	margin: 110px auto 0;
+	text-align: center;
+}
+.view .content .nopassenger img{
+	margin: 0 auto 20px;
+	display: block;
+}
+.view .content .nopassenger p{
+	font-size: 12px;
+	color: #808080;
+}

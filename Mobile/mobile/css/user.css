@@ -1,0 +1,33 @@
+.view .lineGroup{
+	background-color: #fff;
+	margin-top: 8px;
+	border-top: 1px solid #D5D5D5;
+}
+.view .photo{
+	height:100px;
+	line-height: 100px;
+}
+.view .photo img{
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+	background-color: #e8eaec;
+}
+.view .lineGroup i.i_enter{
+	margin:0 16px;
+}
+.view .lineGroup span.head{
+	width: 80px;
+	padding-left: 16px;
+}
+.view .lineGroup .con{
+	text-align: right;
+	line-height: 44px;
+	opacity: 1;
+}
+.view .lineGroup .datec{
+    position: absolute;
+	opacity: 0;
+    z-index: 99;
+    max-width: 1024px;
+}

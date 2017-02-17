@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="NIM- Responsive One Page Creative Template" />
+<meta name="keywords" content=""/>
+<meta name="author" content="Metrothenes" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<link rel="stylesheet" media="screen" href="../css/bootstrap.min.css"/>
+<link rel="stylesheet" media="screen" href="../css/commonExt.css"/>
+<link rel="stylesheet" media="screen" href="../css/jitusuccess.css"/>
+<script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/promotion/promotionS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/promotion/promotionC.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/promotion/promotion.js" type="text/javascript" charset="utf-8"></script>
+<title>支付结果</title>
+</head>
+<body ng-app="app" ng-controller="successC">
+<div class="view" >
+  <!-- 头部 -->
+  <!--
+  <header class="header-box">
+    <div class="container">
+      <div class="activebar"> <a href="#" class="btnBack backNoText"><i class="icon icon-back marR4"></i></a> <span class="title"> 支付结果 </span> </div>
+    </div>
+  </header>
+  -->
+  <!--  内容 -->
+  <div class="all-width huiyuanbans">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 jieguo">
+          <div class="col-xs-4 jieguo-img"> <img src="../images/zhifusuccess.png"> </div>
+          <div class="col-xs-8 jieguo-text"> 恭喜您，支付成功！<br/>您已经成功升级为{{data.name}}！<br/>您的{{data.names}}卡号是:{{data.num}} </div>
+          <!--
+	<img src="../images/huiyuanban.jpg" />
+	-->
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+  <div class="all-width tip">
+  <div class="container">
+  温馨提醒：亲， 如果您需要我们邮寄实体卡,<br/>请在下方填写您的邮寄信息。（免邮费） 
+  </div>
+  </div>
+  <div class="all-width content">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 content-padd">
+          <div class="col-xs-12 title-check" ng-click="check(value)"><span ng-class="value?'checked':''"> </span>
+            <p>我需要实体卡</p>
+          </div>
+          <div class="form-group" >
+            <div class="form-group">
+              <input type="text" class="form-control"  placeholder="收件人" ng-model="ren">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control"  placeholder="联系电话" ng-model="phone">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control"  placeholder="收货地址" ng-model="address">
+            </div>
+          </div>
+		  <div class="col-xs-12 content-message">
+		  亲、如果您需要帮助，可拨打下方我们的客服电话哦！<br/>
+		  <span>400-7777-927</span>或<span>0755-82900666</span>
+		  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div class="row">
+  <div class="col-xs-12 tijiao">
+  <button class="btn btn-success btn-block" ng-click="submit();">提交信息</button>
+  </div>
+  </div>
+  </div>
+</div>
+<message></message>
+</body>
+</html>

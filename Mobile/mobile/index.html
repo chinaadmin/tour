@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <link rel="stylesheet" media="screen" href="/bower_components/bootstrap/3.3.0/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="/css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="/css/index.css"/>
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script> 
+  <script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script> 
+  <script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ngWechat.js?t=8446546" type="text/javascript" charset="utf-8"></script>
+  <!-- 定位本客户端ip与位置<script src="http://pv.sohu.com/cityjson?ie=utf-8" type="text/javascript" charset="utf-8"></script> -->
+ <!-- me-lazyload.js -->
+  <script src="/bower_components/me-lazyload/me-lazyload.js" type="text/javascript" charset="utf-8"></script>	
+  <script>
+  	var	tmpAddJs = ['me-lazyload'];
+  </script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>  
+
+  <script src="/js/home/indexS.js?t=8446546" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/home/indexC.js?t=86" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/index.js?t=8446546" type="text/javascript" charset="utf-8"></script>
+
+  <script src="/js/socket.io.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+      // 连接服务端
+      var socket = io('http://workerman.net:2120');
+      // uid可以是自己网站的用户id，以便针对uid推送以及统计在线人数
+      uid = 123;
+      // socket连接后以uid登录
+      socket.on('connect', function(){
+        socket.emit('login', uid);
+      });
+      // 后端推送来消息时
+      socket.on('new_msg', function(msg){
+          // alert(msg);
+          console.log("收到消息："+msg);
+      });
+      // 后端推送来在线数据时
+      socket.on('update_online_count', function(online_stat){
+//        console.log(online_stat);
+      });
+   </script>
+
+<!-- Swiper  css-->
+<link rel="stylesheet" media="screen" href="/bower_components/swiper/3.1.7/swiper.min.css"/>
+
+  <title>吉途旅游</title>
+</head>
+<body ng-app="app" ng-controller="indexC" ng-loading style="display:none" class="home" ng-cloak>
+  <div class="view" id="view">
+    <!-- 头部 -->
+    <header class="header-box" style="display: none;">
+      <div class="container">
+        <div class="search-box" ng-click="toPage('searchlist')">
+       		<img class="searchIcon" src="images/index/serch@2x.png" height="12px" width="12px"/>搜索线路目的地
+        </div>
+      </div>
+    </header>
+
+    <!--  内容 -->
+    <div id="content" class="content">
+      <!-- banner轮播图 -->
+       <!-- 轮播start --> 
+	 		   <!-- Swiper -->
+	    <div class="swiper-container swiper-container1 swiper-container-horizontal">
+	        <div class="swiper-wrapper">
+	        	<!--<div class="swiper-slide" ng-repeat="(k,v) in banner.data">
+	        		<a href="#">
+		        		<img ng-src="{{v.img_url}}"/>
+	        		</a>
+	        	</div>-->
+	        	<!--<div class="swiper-slide">
+	        		<a href="">
+		        		<img src="images/index/banner_picbg.png"/>
+	        		</a>
+	        	</div>
+	        	<div class="swiper-slide">
+	        		<a href="#">
+		        		<img src="images/index/pic1.png"/>
+	        		</a>
+	        	</div>-->
+	        </div>
+	        <div class="swiper-pagination"></div>
+	    </div>
+        <!-- 轮播end -->
+      <div class="search" id="search" ng-click="toPage('searchlist')">
+      	<div class="searchInput">
+	       	<img class="searchInput" src="images/index/serch_box.png" height="32px" width="100%"/>
+	       	<p>
+	       		<img class="searchIcon" src="images/index/icon_serch@2x.png" height="12px" width="12px"/>搜索线路目的地
+	       	</p>
+      	</div>
+      </div>
+	    <div class="list-box">
+	    	<div class="local" ng-click="toPage('gatarea')">
+	    		<img class="icon-local" src="images/index/icon_location@2x.png" height="16px" width="12px"/>
+	    		<span class="location">当前位置：{{ByLngLat.city.name}}市</span>
+	    		<img class="icon-more" src="images/index/icon_centel@2x.png" height="11px" width="6px"/>
+	    	</div>
+				<nav class="nav-box flex">
+          <!--
+					<a href="html/commodity/healthTravel.html" class="flexOne"><img src="images/index/icon_health_travel@2x.png"/><p>养生游</p></a>
+					<a href="html/commodity/domesticTravel.html" class="flexOne"><img src="images/index/icon_domestic@2x (2).png"/><p>国内游</p></a>
+					<a href="html/commodity/aroundTravel.html" class="flexOne"><img src="images/index/icon_surrounding@2x(2).png"/><p>周边游</p></a>
+          -->
+          <a ng-click="search('{{v.url}}')" class="flexOne" ng-repeat="(k,v) in topNav.navList"><img ng-src="{{v.photo}}"/><p>{{v.name}}</p></a>
+				</nav>
+	    </div>
+			
+			<div class="hot_place">
+				<section class="fbox">
+					<div class="fbox_title">
+						<p class="place">热门目的地</p>
+						<!--<a class="icon_more">更多</a>-->
+					</div>
+					<div class="fbox_content" style="height:80px">
+						<div class="" style="width: 100%;height:80px;">
+							<div class="swiper-container swiper-container2 swiper-container-horizontal" style="width: 100%;">
+				        <div class="swiper-wrapper">
+				        </div>
+				      </div>
+						</div>
+					</div>
+					<div class="fbox_footer">
+						<a class="more" href="html/commodity/remenmdd.html">查看更多景点</a>
+						<img src="images/index/icon_more@2x.png" height="8px" width="5px"/>
+					</div>
+				</section>
+			</div>
+			<alerter></alerter>
+			<section class="mbox">
+				<!--<div class="fbox_title">
+					<span>精选推荐</span>
+				</div>-->
+				<ul class="fbox_content clearfix" ng-touchend="bottom?getRoutes():''" >
+					<li ng-repeat="(k,v) in routes.data">
+						<div class="con_item" data-goods-id="{{v.goods_id}}" ng-hide="$last" ng-click="showdetail({{v.goods_id}})">
+							<a><img ng-src="{{v.img_url}}" class="item_bg"/></a>
+						</div>
+
+             <div class="con_item" data-goods-id="{{v.goods_id}}" ng-show="$last" ng-click="showdetail({{v.goods_id}})">
+              <a><img ng-src="{{v.img_url}}" class="item_bg"/></a>
+            </div>
+
+						<div class="con_introduce">
+							<p class="intr_destination inlineShow">
+								{{v.title}}{{v.titles}}{{v.name}}
+							</p>
+							<p class="intr_attractions"><span class="con_name">{{v.cat}}</span><em class="price"><span style="color:red">¥{{v.price}}</span><span> 元起</span></em></p>
+						</div>
+
+            
+					</li>
+				</ul>
+			</section>
+			<!--<p>{{ByLngLat.city.name}}</p>-->
+			
+      <footer class="foot-box">
+        <nav class="flex">
+            <a class="flexOne">
+              <img src="images/index/icon_home_selected@2x (2).png">
+              <p class="nav-choice colorYe">首页</p>
+            </a>
+            <a class="flexOne" ng-click="toPage('order')">
+              <img ng-src="images/index/icon_order_def@2x.png">
+              <p class="nav-choice">订单</p>
+            </a>
+            <a class="flexOne" ng-click="toPage('personalCenter')">
+              <img ng-src="images/index/icon_my_default@2x.png">
+              <p>我的</p>
+            </a>
+        </nav>
+      </footer>
+
+    </div>
+  </div>
+
+
+  <div class="msgBox" ng-show="page.msg"  style="display:none">
+    <div class="wrap">
+      <h3>尚未登陆，请先登陆再进行操作！</h3>
+      <div class="btnBox">
+        <a class="btn btnCancle" ng-click="page.msg=!page.msg">取消</a>
+        <a class="btn btnSure" ng-click="toPage('cart')">确定</a>
+      </div>
+    </div>
+  </div>
+  <message style="display:none"></message>
+
+<!-- Swiper  css-->
+<script src="/bower_components/swiper/3.1.7/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/index/index.js" type="text/javascript" charset="utf-8"></script> 
+<script>
+$(window).ready(function(){
+	$(window).scroll(function(){
+//		console.log($(window).scrollTop())
+		if($(window).scrollTop()>=200){
+			$(".header-box").fadeIn();
+		}else{
+			$(".header-box").fadeOut();
+		}
+	});
+//	var width = $("#search").width();
+//	$(".searchInput").css("width",width)
+})
+</script>
+</body>
+</html>

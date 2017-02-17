@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonExt.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/remen.css"/>
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+   <script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/plugin/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/ngWechat.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+  <script src="/js/remenmdd/remenmddS.js?t=as" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/remenmdd/remenmddC.js?t=as" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/remenmdd/check.js?t=as" type="text/javascript" charset="utf-8"></script>
+
+  <title>热门目的地</title>
+</head>
+<body ng-app="app" ng-controller="remenmddC">
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="#" class="btnBack backNoText"  ng-click="back()"> <i class="icon icon-back marR4"></i>
+          </a>
+          <span class="title">热门目的地</span>
+         
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    
+
+
+   <div class="container content payby">
+     <div class="col-xs-12 jianglanone" ng-repeat="(k,v) in datalist">
+      <div class="col-xs-12 jianglanone-title">
+       <div class="jianglanone-title-left">
+
+       </div>
+        {{v.classify_name}}
+       <div class="jianglanone-title-right">
+
+       </div>
+
+      </div>
+      <div class="col-xs-12 jianglanone-content">
+
+       <div class="col-xs-6 jianglanone-one" ng-repeat="(k,v) in v.setplace">
+         <a href="searchlist.html?searchkey={{v.place_keyword}}">
+         <img ng-src="{{v.img_url}}"/>
+         <div class="jianglanone-one-position">
+           <img src="../../jituimages/rementu.png"/>
+           {{v.place_name}}
+         </div></a>
+       </div>
+       <!--
+       <div class="col-xs-6 jianglanone-one">
+         <img src="../../jituimages/remenmdd.jpg"/>
+         <div class="jianglanone-one-position">
+           <img src="../../jituimages/rementu.png"/>
+           云南丽江
+         </div>
+       </div>
+       <div class="col-xs-6 jianglanone-one">
+         <img src="../../jituimages/remenmdd.jpg"/>
+         <div class="jianglanone-one-position">
+           <img src="../../jituimages/rementu.png"/>
+           云南丽江
+         </div>
+       </div>
+       <div class="col-xs-6 jianglanone-one">
+         <img src="../../jituimages/remenmdd.jpg"/>
+         <div class="jianglanone-one-position">
+           <img src="../../jituimages/rementu.png"/>
+           云南丽江
+         </div>
+       </div>
+       -->
+      </div>
+
+
+     </div>
+
+     <!--
+     <div class="col-xs-12 jianglanone">
+      <div class="col-xs-12 jianglanone-title">
+       <div class="jianglanone-title-left">
+
+       </div>
+        烟雨江南
+       <div class="jianglanone-title-right">
+
+       </div>
+
+      </div>
+      <div class="col-xs-12 jianglanone-content">
+       <div class="col-xs-6 jianglanone-one">
+         <img src="../../jituimages/remenmdd.jpg"/>
+         <div class="jianglanone-one-position">
+           <img src="../../jituimages/rementu.png"/>
+           云南丽江
+         </div>
+       </div>
+       <div class="col-xs-6 jianglanone-one">
+         <img src="../../jituimages/remenmdd.jpg"/>
+         <div class="jianglanone-one-position">
+           <img src="../../jituimages/rementu.png"/>
+           云南丽江
+         </div>
+       </div>
+       <div class="col-xs-6 jianglanone-one">
+         <img src="../../jituimages/remenmdd.jpg"/>
+         <div class="jianglanone-one-position">
+           <img src="../../jituimages/rementu.png"/>
+           云南丽江
+         </div>
+       </div>
+       <div class="col-xs-6 jianglanone-one">
+         <img src="../../jituimages/remenmdd.jpg"/>
+         <div class="jianglanone-one-position">
+           <img src="../../jituimages/rementu.png"/>
+           云南丽江
+         </div>
+       </div>
+
+      </div>
+
+      
+     </div>
+     -->
+    </div>
+    
+
+
+
+  </div>
+  <message></message>
+</body>
+</html>

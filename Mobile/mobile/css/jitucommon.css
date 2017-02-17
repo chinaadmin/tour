@@ -1,0 +1,23 @@
+html, body { height: 100%; width: 100%; background-color: #E6EDF0; }
+[class*="col-"] {
+  padding:0px;
+}
+.header-box {background-color: #1B1C20;position:relative;}
+.header-box .icon.icon-back {background-image: url(../images/huiti.png);}
+.title{color:#ffffff;}
+/*
+.huiyuanban{height:422px;background:#D39818 url(../images/huiyuanban.jpg) no-repeat top center;text-align: center;position: relative;}
+*/
+.huiyuanban{text-align:center;}
+.huiyuanban img{width:100%;height:211px;}
+.floor1{border-top:1px solid #D5D5D5;border-bottom:1px solid #D5D5D5;background:#ffffff;margin-top:7px;padding:12px;}
+.floor1-top{font-size:15px;line-height:30px;margin-bottom:12px;}
+.floor1-top h2{float:left;margin:0px;font-size:15px;line-height:30px;}
+.floor1-top span{float:right;font-size:12px;color:#D39818;}
+.floor1-top a{float:right;margin-left:20px;font-size:12px;}
+.floor1 p{margin:0px;text-align:left;line-height:22px;font-size:11px;}
+.floor2{margin-top:20px;padding:0px 10px;}
+.floor2 p{margin:0px;text-align:center;line-height:22px;font-size:11px;color:#D39818;}
+
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="not-ie" lang="en">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="NIM- Responsive One Page Creative Template" />
+  <meta name="keywords" content=""/>
+  <meta name="author" content="Metrothenes" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../../css/bootstrap.min.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/commonCss.css"/>
+  <link rel="stylesheet" media="screen" href="../../css/balance.css"/>
+
+
+
+  <script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/dataStore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/interface.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/plugin/jpeg_encoder_basic.js" type="text/javascript" charset="utf-8"></script>
+   <script src="/js/plugin/exif.js" type="text/javascript" charset="utf-8"></script>
+
+  <script src="/js/ngResizeImage.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userS.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/userC.js?t=14122" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/user/user.js" type="text/javascript" charset="utf-8"></script>
+  <title>积分明细</title>
+</head>
+<body ng-app="app" ng-controller="integralC" ng-cloak>
+  <div class="view">
+    <!-- 头部 -->
+    <header class="header-box">
+      <div class="container">
+        <div class="activebar">
+          <a href="#" class="btnBack" ng-back="personalCenter"><img src="../../images/user/btnBack.png"/></a>
+          <span class="title">
+          	积分明细
+          </span>
+        </div>
+      </div>
+    </header>
+    <!--  内容 -->
+    <div id="content" class="container content" ng-touchend="bottom?load():''">
+        <!--<div class="top">
+        	<div class="card">
+	        	<p class="title">我的积分</p>
+	        	<p style="margin-bottom: 30px;"><span class="balance">{{balance}}</span><span class="symbol">￥</span><span class="top-up" ng-click="toPage('recharge')">余额充值</span></p>
+	        	<p class="VIP">个人VIP：NO.900006</p>
+	        	<p class="VIP">家庭VIP：NO.900006</p>
+        	</div>
+	      </div>-->
+	      <div class="list_box marT8">
+	        <div class="list" ng-repeat="(k,v) in integralDetail">
+	        	<p class="one flex">
+	        		<span class="type flexOne">{{v.type}}</span>
+	        		<span class="money flexOne" ng-class="{true:'moneyA'}[v.credits*1>0]"><span ng-show="v.credits*1>0">+</span>{{v.credits}}</span>
+	        	</p>
+	        	<p class="two flex">
+			        <span class="balance flexOne inlineShow">{{v.remark}}</span>
+			        <span class="time flexOne">{{v.add_time}}</span>
+	        	</p>
+		      </div>
+	      </div>
+    </div>
+  </div>
+  <message></message>
+</body>
+</html>
