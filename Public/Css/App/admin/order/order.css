@@ -1,0 +1,223 @@
+/* 搜索公用样式 */
+
+/* 搜索框 */
+
+.form-rows {
+	width: 100%;
+	float: left;
+}
+.from-columns {
+	margin: 5px 0;
+	display: inline-block;
+}
+.column-ext {
+	width: 260px;
+}
+
+.column-select {
+	width: 200px;
+}
+.column-select-d {
+	width: 150px;
+}
+
+/* 原表格内嵌表格样式 */
+
+.innerTable {
+	width:70%;
+}
+
+/* 新表格 */
+
+.table-background {
+	background-color: #3399ff;
+	color: #fff;
+}
+.table-tr-set {
+	background-color: #f5f5f5;
+	font-weight: bold;
+}
+
+/* 右侧商品信息 */
+
+.goods-table tr {
+	border-bottom: 1px solid #f5f5f5;
+}
+/* 最后一行去掉底部边框 */
+.goods-table tr:last-child {
+	border: 0;
+}
+
+#insertData a{
+	margin-left:3px;
+	margin-top:6px;
+}
+
+#delData a{
+	margin-left:3px;
+	margin-top:6px;
+}
+#check{
+	margin-left:10px;
+}
+#check button{
+	margin-left:2px;
+}
+
+#user-role_id{
+	width:150px;
+}
+
+
+/**订单详情**/
+.base-info{
+	min-width:836px;
+}
+.base-info .base-info-top{
+	height:30px;
+	line-height:30px;
+	background:#f9f9f9;
+	border:1px solid #e8e8e8;
+}
+.base-info .base-info-top li{
+	float:left;
+	text-align:center;
+	min-width:200px;
+	line-height:30px;
+}
+.base-info-body{
+	height:320px;
+	margin:0px;
+    margin-left:5px;
+	margin-top:5px;
+}
+.base-info-body .info-body1{
+        width:30%;
+		border:1px solid #e4e4e4;
+		height:320px;
+		float:left;
+}
+.base-info-body .info-body1 p{
+	padding-left:20px;
+	vertical-align:middle;
+	padding-top:15px;
+}
+.base-info-body .info-body1 .p1{
+	border-bottom:1px dashed #e4e4e4;
+	height:220px;
+}
+.base-info-body .info-body1 .p1 span{
+	/* margin:8px; */
+	height:32px;
+}
+.base-info-body .info-body1 .p2{
+	border-bottom:1px dashed #e4e4e4;
+	height:90px;
+}
+.base-info-body .info-body2{
+        width:40%;
+		border:1px solid #e4e4e4;
+		height:320px;
+		float:left;
+		border-left:none;
+		position:relative;
+}
+.base-info-body .info-body2 .order-base{
+	width:70%;
+	height:160px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-90px;
+	margin-left:-35%;
+	font-family:"微软雅黑";
+}
+.base-info-body .info-body2 .order-base h4{
+	font-weight:bolder;
+}
+.base-info-body .info-body3{
+        width:29%;
+		height:270px;
+		border:1px solid #e4e4e4;
+		float:left;
+		border-left:none;
+		padding-top:50px;
+}
+.base-info-body .info-body3 p{
+	text-align:center;
+}
+.base-info .base-info-footer{
+	width:99%;
+	margin-left:5px;
+	margin-top:10px;
+}
+/**订单详情**/
+.order-search ul{
+	border-bottom:2px solid #3333ff;
+	height:25px;
+	margin:-15px 0 10px 0px;
+}
+.order-search li a{
+	display:block;
+	float:Left;
+	line-height:25px;
+	width:110px;
+	text-align:center;
+	padding:0px 5px;
+}
+.order-search li a:hover{
+	background:#3333ff;
+	color:#fff;
+}
+.order-search li a.add-check{
+	background:#3333ff;
+	color:#fff;
+}
+ #refund-img{
+	margin-left: 50px;
+	margin-bottom: 10px;
+	display: inline;
+}
+#refund-img>div{
+	float: left;
+}
+#refund2{
+	margin-left:-4px;
+}
+#refund4{
+	margin-left: -4px;
+}
+#refund5{
+	margin-left:-4px;
+}
+#refund7{
+	margin-left:-4px;
+}
+#refund8{
+	margin-left:-4px;
+}
+#refund10{
+	margin-left:-4px;
+}
+#refund11{
+	margin-left:-4px;
+}
+#refund13{
+	margin-left: -4px;
+}
+#text1{
+	margin-left: -20px;
+}
+#text2>p{
+	text-align: center;
+}
+#text3>p{
+	text-align: center;
+}
+#text4>p{
+	text-align: center;
+}
+#text5>p{
+	margin-right: -5px;
+	text-align: right;
+}

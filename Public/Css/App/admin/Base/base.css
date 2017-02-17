@@ -1,0 +1,62 @@
+/* 搜索公用样式 */
+
+/* 搜索框 */
+
+.form-rows {
+	width: 100%;
+	float: left;
+}
+.from-columns {
+	margin: 5px 0;
+	display: inline-block;
+}
+.column-ext {
+	width: 300px;
+}
+
+/* 原表格内嵌表格样式 */
+
+.innerTable {
+	width:70%;
+}
+
+/* 新表格 */
+
+.table-background {
+	background-color: #3399ff;
+	color: #fff;
+}
+.table-tr-set {
+	background-color: #f5f5f5;
+	font-weight: bold;
+}
+
+/* 右侧商品信息 */
+
+.goods-table tr {
+	border-bottom: 1px solid #f5f5f5;
+}
+/* 最后一行去掉底部边框 */
+.goods-table tr:last-child {
+	border: 0;
+}
+
+#insertData a{
+	margin-left:3px;
+	margin-top:6px;
+}
+
+#delData a{
+	margin-left:3px;
+	margin-top:6px;
+}
+#check{
+	margin-left:10px;
+}
+#check button{
+	margin-left:2px;
+}
+
+#user-role_id{
+	width:150px;
+}

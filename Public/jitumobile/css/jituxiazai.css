@@ -1,0 +1,38 @@
+html, body { height: 100%; width: 100%; background-color: #E6EDF0; }
+[class*="col-"] {
+  padding:0px;
+}
+.header-box {background-color: #1B1C20;}
+.header-box .icon.icon-back {background-image: url(../images/huiti.png);}
+.title{color:#ffffff;}
+/*
+.huiyuanban{height:422px;background:#D39818 url(../images/huiyuanban.jpg) no-repeat top center;text-align: center;position: relative;}
+*/
+.huiyuanbans{}
+.jieguo{height:130px;}
+.jieguo-img{text-align:center;}
+.jieguo-img img{width:65px;height:79px;margin-top:20px;}
+.jieguo-text{font-size:11px;color:#ffffff;padding:0px 12px;padding-top:35px;}
+.tip{height:41px;border-bottom:1px solid #C0C6C8;background:#ffffff;text-align:left;font-size:11px;color:#404040;line-height:20px;padding:0px 12px;}
+.content{background:#ffffff;border-top:1px solid #D5D5D5;border-bottom:1px solid #D5D5D5;margin-top:7px;}
+.content-padd{padding:12px;}
+.title-check{line-height:33px;}
+.title-check img{height:33px;width:34px;float:left;}
+.title-check p{float:left;font-size:11px;}
+.content-message{text-align:center;font-size:11px;}
+.content-message span{color:#FF2020;}
+.tijiao{margin-top:20px;color:#ffffff;padding:0px 12px;}
+.tijiao button{color:#ffffff;}
+.height1{height:171px;}
+.height1 img{width:100%;height:171px;}
+.height2{height:187px;}
+.height2 img{width:100%;height:187px;}
+.height3{height:110px;}
+.height3 img{width:100%;height:110px;}
+.height4{height:125px;}
+.height4 img{width:100%;height:125px;}
+
+
+
+
+
