@@ -1,0 +1,169 @@
+<extend name="Common:base" />
+<block name="content">
+<load href="__CSS__/App/admin/admin/region.css" />
+<style>
+.w25{width:25%;}
+.w75{width:75%;}
+.w50{float:left;}
+</style>
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">当前位置：营销 -- 目的地设置</div>
+        </div>
+        <div class="portlet-body">
+            <div class="form-rows">
+                <div class="from-columns column-ext">
+                    <MyTag:rule name="setplace/edit">
+                        <a class="btn green" href="{:U('edit')}">
+                        添加 <i class="icon-plus"></i>
+                        </a>
+                    </MyTag:rule>
+					<MyTag:rule name="setplace/edit">
+                        <a class="btn green del_message">
+                        删除 <i class="icon-remove"></i>
+                        </a>
+                    </MyTag:rule>
+                </div>
+               <form class="form-search pull-right" action="{:U('SetPlace/index')}" method="GET" style="margin-right: 15px;">
+					
+						<div class="from-columns column-ext">
+							<label for="inside-user">编号</label> 
+							<input id="order-sn" name="place_id" type="text" value ="{$Think.get.place_id}" placeholder="" style="width: 100px;">
+						</div>
+
+						<div class="from-columns column-ext">
+							<label for="order-sn">目的地名称</label>
+							<input id="order-sn" name="place_name" type="text" value ="{$Think.get.place_name}" placeholder="" style="width: 100px;">
+						</div>
+
+						<input type = 'hidden' name ='uid' value = "{$Think.get.uid}"/>
+						<div class="from-columns column-ext">
+							<label for="user-role_id">所属分类</label>
+							<select name="fk_classify_id" id="user-role_id">
+								<option value="">请选择</option>
+								<volist name="category_all" id="vo">
+								<option value="{$vo.classify_id}" <eq name="Think.get.fk_classify_id" value="$vo.classify_id">selected</eq>>{$vo.classify_name}</option>
+								</volist>
+							</select>
+						</div>
+						<div class="from-columns column-ext">
+							<label for="user-role_id">是否启用：</label>
+							<select name="place_state" id="user-role_id">
+								<option value="" <eq name="Think.get.place_state" value="">selected</eq>>请选择</option>
+								<option value="1" <eq name="Think.get.place_state" value="1">selected</eq>>是</option>
+								<option value="2" <eq name="Think.get.place_state" value="2">selected</eq>>否</option>
+							</select>
+						</div>
+						<div class="from-columns" id="check">
+							<button class="btn green" type="submit">搜索</button>
+							<button class="btn blue" type="reset">重置</button>
+						</div>
+					
+                </form>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+						<th><input type="checkbox" id="check_all"/></th>
+						<th>编号</th>
+						<th>排序</th>
+                        <th>目的地名称</th>
+                        <th>所属分类</th>
+                        <th>搜索关键词</th>
+                        <th>图片</th>
+                        <th>更新时间</th>
+                        <th>是否启用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <volist name="lists" id="vo">
+                    <tr>
+                        <td ><input type="checkbox" class="order_check" value="{$vo['place_id']}"/>
+                        <td >{$vo.place_id}</td>
+                        <td >{$vo.place_sort}</td>
+                        <td ><a href="{:U('edit',array('id'=>$vo['place_id']))}">{$vo.place_name}</a></td>
+                        <td >{$category[$vo[fk_classify_id]]}</td>
+                        <td >{$vo.place_keyword}</td>
+						<td ><img src="{$vo.img_url}" style="width:150px"/></td>
+                        <td >{$vo.place_time|date='Y-m-d H:i:s',###}</td>
+                       <td status='{$vo.place_state}'>{$vo.place_state|getTypeText = ###,['1' => '是','2' => '否']}</td>
+                       
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+            <div class="row-fluid">
+				<div class="pagination pull-right">
+					{$_page}<div style="float:right;"><div style="margin-left: 13px;margin-right: 109px;margin-top: 5px;">共{$totalPages}页，共{$_total}条
+					每页显示</div>
+					<form class="form-search pull-right" action="{:U('index')}" method="GET" style="margin-right: 33px;margin-top:-24px;">
+						<input type="text" name="pageSize" value="{$pageSize}" id="changePageSize" style="width:34px;"/>条
+					</form></div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--用户详情-->
+<div class="modal hide" id="message" style="width:600px;">
+
+	<div class="modal-header">
+		<button type="button" class="cancel close" ></button>
+		<h4 class="modal-title">添加/编辑</h4>
+	</div>
+	  	
+	<div class="modal-body">
+		<div>
+		  <div class="w50 w25">图片名称</div>
+		  <div class="w50 w75"><input type="text"  name="s_name"/></div>
+		</div>
+		<div>
+		  <div class="w50 w25">显示顺序</div>
+		  <div class="w50 w75"><input type="text"  name="s_display"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		</div>
+		<div>
+		  <div class="w50 w25">更新时间</div>
+		  <div class="w50 w75"><input type="text"  name="s_displays"/>&nbsp;&nbsp;秒&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		</div>
+		<div>
+			<div class="w50 w25">是否启用</div>
+			<div class="w50 w75">
+				<input type="checkbox" name="s_state" value="1" checked />
+			</div>
+		</div>
+		<div>
+		  <div class="w50 w25">上传图片</div>
+		  <div class="w50 w75">
+			  <div class="controls" style="position:relative;">
+				<span style="color:red;position:absolute;top:2px;left:80px;display:block;">点击下图选择默认封面图片！（上传图片尺寸700X700）</span>
+				<MyTag:plupload type="many" attachment="info.attribute_id" thumb="true" clickdefault="true"/>
+				</div>
+		  </div>
+		</div>
+		
+		<!-- <div class="control-group">
+			<label class="control-label">上传产品图片<span class="required">*</span></label>
+			<div class="controls" style="position:relative;">
+			<span style="color:red;position:absolute;top:2px;left:80px;display:block;">点击下图选择默认封面图片！（上传图片尺寸700X700）</span>
+			<MyTag:plupload type="many" attachment="info.attribute_id" thumb="true" clickdefault="true"/>
+			</div>
+		</div> -->
+	</div>
+	<div class="modal-header"></div>
+	
+	<div class="modal-footer">
+		<button class="btn btn-primary" type='submit'>确认</button>
+		<button class="btn cancel" >取消</button>
+  </div>
+</div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/SetPlace/SetPlaceController'],function(admin){
+            admin.index();
+        });
+    </script>
+</block>

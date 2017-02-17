@@ -1,0 +1,109 @@
+<extend name="Common:base" />
+<block name="content">
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">当前位置：产品中心 -- <empty name="info.cat_id">添加<else/>编辑</empty>产品</div>
+        </div>
+        <div class="portlet-body form">
+            <ul class="nav nav-tabs">
+				<li class="active"><a class="" href="#tab_1" data-toggle="tab">标准信息<span class="required" style="color:#e02222;">*</span></a></li>
+				<li><a class="" href="#tab_2" data-toggle="tab">行程特色<span class="required" style="color:#e02222;">*</span></a></li>
+				<li><a class="" href="#tab_3" data-toggle="tab">行程介绍<span class="required" style="color:#e02222;">*</span></a></li>
+				<li><a class="" href="#tab_4" data-toggle="tab">行程费用<span class="required" style="color:#e02222;">*</span></a></li>
+				<li><a class="" href="#tab_5" data-toggle="tab">温馨提示<span class="required" style="color:#e02222;">*</span></a></li>
+		    </ul>
+			<form action="{:U('update')}" class="form-horizontal" id="form_edit" method="POST">
+            <div class="tab-content">
+             	<!--标准信息-->
+ 				<div class="tab-pane active" id="tab_1">
+                	<include file="Product:baseInfo"/>
+                </div>
+
+				<!-- 行程特色 -->
+				<div class="tab-pane" id="tab_2">
+					<!--<div class="control-group">
+						<label class="control-label">上传图片&nbsp;&nbsp;&nbsp;&nbsp;<span class="required">*</span></label>
+						<div class="controls" style="position:relative;">
+							<span style="color:red;position:absolute;top:2px;left:80px;display:block;">推荐尺寸 750px*422px，每张图片大小不超过200K。</span>
+							<MyTag:plupload type="many" attachment="info.feature" thumb="false" name="feature"  id="feature" clickdefault="true" img-width="120" />
+						</div>
+					</div>-->
+					<MyTag:editor height="600" width="1000" name="feature" id="feature">{$info.feature.feature}</MyTag:editor>
+				</div>
+
+				<!-- 行程介绍 -->
+				<div class="tab-pane" id="tab_3">
+					<div class="btn green" id="add_day_travel" style="border: 1px solid;">添加行程天数</div>
+					<!--<div class="control-group">
+						<label class="control-label">上传图片&nbsp;&nbsp;&nbsp;&nbsp;<span class="required">*</span></label>
+						<div class="controls" style="position:relative;">
+							<span style="color:red;position:absolute;top:2px;left:80px;display:block;">推荐尺寸 750px*422px，每张图片大小不超过200K。</span>
+							<MyTag:plupload type="many" attachment="info.introduce" thumb="true" name="introduce"  id="introduce" clickdefault="true" img-width="120" />
+						</div>
+					</div>-->
+					<if condition="$info.introduceinfos eq 0">
+							<div style="margin-top: 10px">
+								<h4>第1天</h4>
+								<div>出发地-目的地<input type="text" name="start_destination[]" value="{$vol.start_destination}" placeholder='格式参照"出发地-目的地"' style="margin-bottom: 5px;margin-left: 20px;"></div>
+								<div>餐饮<input type="text" name="food_beverage[]" value="{$vol.food_beverage}" style="margin-bottom: 5px;margin-left: 78px;"></div>
+								<div>住宿<input type="text" name="accommodation[]" value="{$vol.accommodation}" style="margin-bottom: 5px;margin-left: 78px;"></div>
+								<MyTag:editor height="300" width="1000" name="introduce[]" id="introduce{$key+1}">{$vol.introduce}</MyTag:editor>
+							</div>
+					<else/>
+						<volist name="info.introduceinfos" id="vol">
+							<div style="margin-top: 10px">
+								<h4 style="display:inline;">第{$key+1}天</h4><neq name="key+1" value="1"><div class="daydel btn green del_message" id="{$key+1}" style="margin-left: 918px;margin-top: 10px;"><i class="icon-remove"></i></div></neq>
+								<div>出发地-目的地<input type="text" name="start_destination[]" value="{$vol.start_destination}" placeholder='格式参照"出发地-目的地"' style="margin-bottom: 5px;margin-left: 20px;"></div>
+								<div>餐饮<input type="text" name="food_beverage[]" value="{$vol.food_beverage}" style="margin-bottom: 5px;margin-left: 78px;"></div>
+								<div>住宿<input type="text" name="accommodation[]" value="{$vol.accommodation}" style="margin-bottom: 5px;margin-left: 78px;"></div>
+								<MyTag:editor height="300" width="1000" name="introduce[]" id="introduce{$key+1}">{$vol.introduce}</MyTag:editor>
+							</div>
+						</volist>
+					</if>
+				</div>
+				
+
+				<!-- 行程费用 -->
+				<div class="tab-pane" id="tab_4">
+					<!--<div class="control-group">
+						<label class="control-label">上传图片&nbsp;&nbsp;&nbsp;&nbsp;<span class="required">*</span></label>
+						<div class="controls" style="position:relative;">
+							<span style="color:red;position:absolute;top:2px;left:80px;display:block;">推荐尺寸 750px*422px，每张图片大小不超过200K。</span>
+							<MyTag:plupload type="many" attachment="info.travel_cost" thumb="false" name="travel_cost"  id="travel_cost" clickdefault="true" img-width="120" />
+						</div>
+					</div>-->
+					<MyTag:editor height="600" width="1000" name="travel_cost" id="travel_cost">{$info.travel_cost.travel_cost}</MyTag:editor>
+				</div>
+
+				<!-- 温馨提示 -->
+				<div class="tab-pane" id="tab_5">
+					<!--<div class="control-group">
+						<label class="control-label">上传图片&nbsp;&nbsp;&nbsp;&nbsp;<span class="required">*</span></label>
+						<div class="controls" style="position:relative;">
+							<span style="color:red;position:absolute;top:2px;left:80px;display:block;">推荐尺寸 750px*422px，每张图片大小不超过200K。</span>
+							<MyTag:plupload type="many" attachment="info.reminder" thumb="false" name="reminder"  id="reminder" clickdefault="true" img-width="120" />
+						</div>
+					</div>-->
+					<MyTag:editor height="600" width="1000" name="reminder" id="reminder">{$info.reminder.reminder}</MyTag:editor>
+				</div>
+				
+				<div class="form-actions">
+					<input type="hidden" name="id" value="{$info.product_id|default=0}"/>
+					<button type="submit" class="btn blue">提交</button>
+					<a class="btn" href="{:U('Product/index')}">返回</a>
+				</div>
+			</div>
+			</form>
+        </div>
+    </div>
+</div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/product/productController'],function(main){
+            main.edit();
+            main.time_sole();
+        });
+    </script>
+</block>

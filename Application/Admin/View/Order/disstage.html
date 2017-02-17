@@ -1,0 +1,52 @@
+<extend name="Common:base" />
+<block name="content">
+    <div class="row-fluid">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption"><empty name="info.uid">添加线下订单</div>
+            </div>
+            <div class="portlet-body form">
+                <form action="{:U('update')}" class="form-horizontal" id="form_edit" method="POST">
+                    <div class="tab-content">
+                        <!--标准信息-->
+                        <div class="tab-pane active" id="tab_1">
+                            <div class="control-group">
+                                <label class="control-label" style="margin-left: 109px">选择出发团期&nbsp;&nbsp;</label>
+                                <div class="controls" style="line-height: 34px">
+                                    <input type="hidden" name="dateList" id="dateList" value='{$dateList}'/>
+                                    <!--提交所选择的团期-->
+                                    <input type="hidden" name="datetuqi" id="datetuqi" value='12'/>
+                                    <input type="hidden" name="checkAll" id="checkAll" value='0'/>
+                                    <!--提交所选择的团期-->
+                                </div>
+                                <!--选择团期-->
+                                <div class="rililist calendar" id="display-on" >
+                                    <div class="outer clearfix" id="calendarcontainer">
+
+                                    </div><br/>
+                                </div>
+                                <!--选择团期-->
+                            </div>
+
+                        </div>
+                        <div class="form-actions">
+                            <input type="hidden" id="data"/>
+                            <input type="hidden" id="kucen"/>
+                            <input type="hidden" name="goodsid" value="{$goods_id}"/>
+                            <input type="hidden" name="uid" value="{$uid}"/>
+                            <button type="button" class="btn blue get-date">下一步</button>
+                            <a class="btn" href="{:U('Order/selectJump',['goodsid'=>$goods_id,'uid'=>$uid])}">返回</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/product/onlineController'],function(main){
+            main.edit();
+        });
+    </script>
+</block>

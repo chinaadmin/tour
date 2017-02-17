@@ -1,0 +1,39 @@
+ <!--商品基本信息-->
+ <div class="tab-pane active" id="tab_1">
+		<div class="control-group">
+			<label class="control-label">养生基地名称<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="name" class="m-wrap span2" value="{$info.name|default=''}"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">大标题<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="title" class="m-wrap span2" value="{$info.title|default=''}"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">小标题<span class="required">*</span></label>
+			<div class="controls">
+				<input type="text" name="s_title" class="m-wrap span2" value="{$info.s_title|default=''}"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">显示顺序</label>
+			<div class="controls">
+				<input type="text" name="sort" class="m-wrap span1" value="{$info.sort|default=''}"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">封面图片&nbsp;</label>
+			<div class="controls" style="position:relative;">
+				<span style="color:red;position:absolute;top:2px;left:80px;display:block;">上传图片尺寸750X320</span>
+				<!-- 封面图片只能有一张，上传插件type应该为one，别改为many。一改后台就修改不了封面图片 -->
+				<MyTag:plupload type="one" name='base_attr' attachment="info.attr_id" thumb="true" clickdefault="true"/>
+			</div>
+		</div>
+</div>

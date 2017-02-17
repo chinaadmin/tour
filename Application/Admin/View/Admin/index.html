@@ -1,0 +1,148 @@
+<extend name="Common:base" />
+<block name="content">
+<load href="__CSS__/App/admin/admin/region.css" />
+<style>
+.w25{width:25%;}
+.w75{width:75%;}
+.w50{float:left;}
+</style>
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">管理员列表</div>
+        </div>
+        <div class="portlet-body">
+            <div class="form-rows">
+                <div class="from-columns column-ext">
+                    <MyTag:rule name="Admin/edit">
+                        <a class="btn green" href="{:U('Admin/edit')}">
+                        添加管理员 <i class="icon-plus"></i>
+                        </a>
+                    </MyTag:rule>
+                </div>
+                <form class="form-search pull-right" action="{:U('index')}" method="GET">
+					
+						<div class="from-columns column-ext">
+							<label for="inside-user">用户名：</label> 
+							<input id="order-sn " name="mobile" type="text" value ="{$Think.get.mobile}" placeholder="" style="width: 100px;">
+						</div>
+
+						<div class="from-columns column-ext">
+							<label for="order-sn">真实姓名：</label>
+							<input id="order-sn" name="real_name" type="text" value ="{$Think.get.real_name}" placeholder="" style="width: 100px;">
+						</div>
+
+						<input type = 'hidden' name ='uid' value = "{$Think.get.uid}"/>
+
+						<div class="from-columns column-ext">
+							<label for="user-name">手机号码：</label>
+							<input id="user-name" name="id_number" type="text" value="{$Think.get.id_number}" placeholder="" style="width: 110px;">
+						</div>
+						<div class="from-columns column-ext">
+							<label for="user-role_id">所属部门：</label>
+							<select name="role_id" id="user-role_id">
+								<option value="-1">选择部门</option>
+								<volist name = 'role_list'  id = 'roleList'>
+									<option  value="{$roleList.role_id}" <if condition = "$role_id eq $roleList['role_id']">selected</if> >{$roleList.name}</option>
+								</volist>
+							</select>
+						</div>
+						<div class="from-columns" id="check123">
+							<!--<button class="btn green" type="submit">搜索</button>
+							<button class="btn blue" type="reset">重置</button>-->
+                            <input class="btn green" type="submit" value="搜索" />
+                            <a href="{:U('index')}" class="btn blue">重置</a>
+						</div>
+					
+                </form>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <eq name="id_status" value="1"><th><a  href="{:U('index',array(sort_id=>'1',pageSize=>$pageSize))}">编号&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="id_status" value="2"><th><a  href="{:U('index',array(sort_id=>'2',pageSize=>$pageSize))}">编号&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="id_status" value="3"><th><a  href="{:U('index',array(sort_id=>'3',pageSize=>$pageSize))}">编号&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="username_status" value="4"><th><a  href="{:U('index',array(sort_id=>'4',pageSize=>$pageSize))}">用户名&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="username_status" value="5"><th><a  href="{:U('index',array(sort_id=>'5',pageSize=>$pageSize))}">用户名&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="username_status" value="6"><th><a  href="{:U('index',array(sort_id=>'6',pageSize=>$pageSize))}">用户名&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="realname_status" value="7"><th><a  href="{:U('index',array(sort_id=>'7',pageSize=>$pageSize))}">真实姓名&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="realname_status" value="8"><th><a  href="{:U('index',array(sort_id=>'8',pageSize=>$pageSize))}">真实姓名&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="realname_status" value="9"><th><a  href="{:U('index',array(sort_id=>'9',pageSize=>$pageSize))}">真实姓名&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="phone_status" value="10"><th><a  href="{:U('index',array(sort_id=>'10',pageSize=>$pageSize))}">手机号码&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="phone_status" value="11"><th><a  href="{:U('index',array(sort_id=>'11',pageSize=>$pageSize))}">手机号码&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <eq name="phone_status" value="12"><th><a  href="{:U('index',array(sort_id=>'12',pageSize=>$pageSize))}">手机号码&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                        <th>所属部门</th>
+                        <th>是否启用</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <volist name="lists" id="vo">
+                    <tr>
+                        <td ><a href="{:U('Admin/edit',array('uid'=>$vo['uid']))}">{$vo.uid}</a></td>
+                        <td>{$vo.username}</td>
+                        <!-- <td>{$vo.name|getTypeText = ###,['1' => '男','2' => '女']}</td> -->
+                        <td>{$vo.nickname}</td>
+                        <td>{$vo.mobile}</td>
+                        <td>{$vo.role_name}</td>
+                        <td>{$vo.status|getStatus}</td>
+                        <td>
+                            <a class="btn blue-stripe uppass" data="{$vo.uid}">修改密码</a>
+                        </td>
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+            <div class="row-fluid">
+                <div class="pagination pull-right">
+                    {$_page}<div style="float:right;"><div style="margin-left: 13px;margin-right: 109px;margin-top: 5px;">共{$totalPages}页，共{$_total}条
+                    每页显示</div>
+                    <form class="form-search pull-right" action="{:U('index')}" method="GET" style="margin-right: 33px;margin-top:-24px;">
+                        <input type="text" name="pageSize" value="{$pageSize}" id="changePageSize" style="width:34px;"/>条
+                    </form></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--用户详情-->
+<div class="modal hide" id="up_pass" style="width:400px;">
+
+	<div class="modal-header">
+		<button type="button" class="cancel close" ></button>
+		<h4 class="modal-title">修改密码</h4>
+	</div>
+	  
+	<div class="modal-body">
+		<div class="opass">
+		  <div class="w50 w25">原密码：</div>
+		  <div class="w50 w75"><input type="password"  name="opwd"/></div>
+		</div>
+		<div>
+		  <div class="w50 w25">新密码：</div>
+		  <div class="w50 w75"><input type="password"  name="pwd"/></div>
+		</div>
+		<div>
+		  <div class="w50 w25">确认新密码：</div>
+		  <div class="w50 w75"><input type="password"  name="pwds"/></div>
+		</div>
+		<div>
+		  <div class="w50 w25">&nbsp;</div>
+		  <div class="w50 w75 prompt">&nbsp;</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type='submit'>确认</button>
+		<button class="btn cancel" >取消</button>
+  </div>
+</div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/admin/adminController'],function(admin){
+            admin.index();
+        });
+    </script>
+</block>

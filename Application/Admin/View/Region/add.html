@@ -1,0 +1,53 @@
+<extend name="Common:base" />
+<block name="css"><load href="__CSS__/App/admin/type/type.css"/></block>
+<block name="content">
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">添加地址</div>
+        </div>
+        <div class="portlet-body form">
+            <form id="from_edit" action="{:U('Region/update')}" method="post" class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label">地址名称</label>
+                <div class="controls">
+                    <input type="text" name="name" class="m-wrap span1" value=""/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">上级地址</label>
+                <div class="controls" id="address">
+                    <select class="m-wrap" name="first" id="first_address" style="width:120px;">
+                        <option value="0">请选择</option>
+                        <volist name="first" id="vo">
+                            <option value="{$vo.depart_id}">&nbsp;&nbsp;&nbsp;{$vo.name}</option>
+                        </volist>
+                    </select>
+
+                    <select class="m-wrap" name="second" id="second_address" style="width:120px;display:none">
+                        
+                        
+                    </select>
+                    <select class="m-wrap" name="third" id="third_address" style="width:120px;display:none">
+                        
+                    </select>
+                </div>
+            </div>
+   
+            <div class="form-actions">
+                <button type="submit" class="btn blue">提交</button>
+                <a class="btn" href="{:U('Region/index')}">返回</a>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</block>
+<block name="js">
+	<script type="text/javascript">
+		seajs.use(['controller/region/regionController'],function(main){
+            main.add();
+		});
+	</script>
+</block>

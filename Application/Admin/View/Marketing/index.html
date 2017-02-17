@@ -1,0 +1,165 @@
+<extend name="Common:base" />
+<block name="content">
+<load href="__CSS__/App/admin/admin/region.css" />
+<style>
+.w25{width:25%;}
+.w75{width:75%;}
+.w50{float:left;}
+</style>
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">当前位置：营销 -- APP启动页</div>
+        </div>
+        <div class="portlet-body">
+            <div class="form-rows">
+                <div class="from-columns column-ext">
+                    <MyTag:rule name="marketing/edit">
+                        <a class="btn green" href="{:U('edit')}">
+                        添加 <i class="icon-plus"></i>
+                        </a>
+                    </MyTag:rule>
+					<MyTag:rule name="marketing/edit">
+                        <a class="btn green del_message">
+                        删除 <i class="icon-remove"></i>
+                        </a>
+                    </MyTag:rule>
+                </div>
+               <form class="form-search pull-right" action="{:U('Marketing/index')}" method="GET" style="margin-right: 15px;">
+					
+						<div class="from-columns column-ext">
+							<label for="inside-user">图片编号</label> 
+							<input id="order-sn" name="s_id" type="text" value ="{$Think.get.s_id}" placeholder="" style="width: 100px;">
+						</div>
+
+						<div class="from-columns column-ext">
+							<label for="order-sn">图片名称</label>
+							<input id="order-sn" name="s_name" type="text" value ="{$Think.get.s_name}" placeholder="" style="width: 100px;">
+						</div>
+
+						<div class="from-columns column-ext">
+							<label for="user-role_id">是否启用：</label>
+							<select name="s_state" id="user-role_id">
+							<if condition="$s_state eq '2'">
+								<option value="">全部</option>
+								<option value="1">是</option>
+								<option value="2" selected>否</option>
+							<elseif condition="$s_state eq 1"/>
+								<option value="">全部</option>
+								<option value="1" selected>是</option>
+								<option value="2">否</option>
+							<else/>
+								<option value="" selected>全部</option>
+								<option value="1">是</option>
+								<option value="2">否</option>
+							</if>
+							</select>
+						</div>
+						<div class="from-columns" id="check">
+							<button class="btn green" type="submit">搜索</button>
+							<a href="{:U('index')}" class="btn blue">重置</a>
+						</div>
+					
+                </form>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+						<th><input type="checkbox" id="check_all"/></th>
+						<th>图片编号</th>
+                        <th>图片名称</th>
+                        <th>图片路径</th>
+                        <th>显示顺序</th>
+                        <th>更新时间</th>
+                        <th>是否启用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <volist name="lists" id="vo">
+                    <tr>
+                        <td ><input type="checkbox" class="order_check" value="{$vo['s_id']}"/>
+                        <td >{$vo.s_id}</td>
+                        <td ><a href="{:U('edit',array('id'=>$vo['s_id']))}">{$vo.s_name}</a></td>
+                        <td ><img src="{$vo.img_url}"  style="height:50px"/></td>
+                        <td >{$vo.s_display}</td>
+                        <td >{$vo.s_time|date='Y-m-d H:i:s',###}</td>
+                       <td status='{$vo.s_state}'>{$vo.s_state|getTypeText = ###,['1' => '是','2' => '否']}</td>
+                       <td style="display:none">{$vo.s_display_time}</td>
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+            <div class="row-fluid">
+				<div class="pagination pull-right">
+					{$_page}<div style="float:right;"><div style="margin-left: 13px;margin-right: 109px;margin-top: 5px;">共{$totalPages}页，共{$_total}条
+					每页显示</div>
+					<form class="form-search pull-right" action="{:U('index')}" method="GET" style="margin-right: 33px;margin-top:-24px;">
+						<input type="text" name="pageSize" value="{$pageSize}" id="changePageSize" style="width:34px;"/>条
+					</form></div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--用户详情-->
+<div class="modal hide" id="message" style="width:600px;">
+
+	<div class="modal-header">
+		<button type="button" class="cancel close" ></button>
+		<h4 class="modal-title">添加/编辑</h4>
+	</div>
+	  	
+	<div class="modal-body">
+		<div>
+		  <div class="w50 w25">图片名称</div>
+		  <div class="w50 w75"><input type="text"  name="s_name"/></div>
+		</div>
+		<div>
+		  <div class="w50 w25">显示顺序</div>
+		  <div class="w50 w75"><input type="text"  name="s_display"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		</div>
+		<div>
+		  <div class="w50 w25">更新时间</div>
+		  <div class="w50 w75"><input type="text"  name="s_displays"/>&nbsp;&nbsp;秒&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		</div>
+		<div>
+			<div class="w50 w25">是否启用</div>
+			<div class="w50 w75">
+				<input type="checkbox" name="s_state" value="1" checked />
+			</div>
+		</div>
+		<div>
+		  <div class="w50 w25">上传图片</div>
+		  <div class="w50 w75">
+			  <div class="controls" style="position:relative;">
+				<span style="color:red;position:absolute;top:2px;left:80px;display:block;">点击下图选择默认封面图片！（上传图片尺寸700X700）</span>
+				<MyTag:plupload type="many" attachment="info.attribute_id" thumb="true" clickdefault="true"/>
+				</div>
+		  </div>
+		</div>
+		
+		<!-- <div class="control-group">
+			<label class="control-label">上传产品图片<span class="required">*</span></label>
+			<div class="controls" style="position:relative;">
+			<span style="color:red;position:absolute;top:2px;left:80px;display:block;">点击下图选择默认封面图片！（上传图片尺寸700X700）</span>
+			<MyTag:plupload type="many" attachment="info.attribute_id" thumb="true" clickdefault="true"/>
+			</div>
+		</div> -->
+	</div>
+	<div class="modal-header"></div>
+	
+	<div class="modal-footer">
+		<button class="btn btn-primary" type='submit'>确认</button>
+		<button class="btn cancel" >取消</button>
+  </div>
+</div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/marketing/marketingController'],function(admin){
+            admin.index();
+        });        
+    </script>
+</block>

@@ -1,0 +1,149 @@
+<extend name="Common:base" />
+<block name="content">
+<load href="__CSS__/App/admin/admin/region.css" />
+<style>
+.w25{width:25%;}
+.w75{width:75%;}
+.w50{float:left;}
+</style>
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">当前位置：统计 -- 线路产品</div>
+        </div>
+        <div class="portlet-body">
+            <div class="form-rows">
+             
+               <form class="form-search pull-right" action="{:U('index')}" method="GET" style="margin-right: 15px;">
+					
+						<div class="from-columns column-ext">
+							<label for="inside-user">编号</label> 
+							<input id="order-sn" name="goods_sn" type="text" value ="{$Think.get.goods_sn}" placeholder="" style="width: 100px;">
+						</div>
+
+						<div class="from-columns column-ext">
+							<label for="order-sn">线路名称</label>
+							<input id="order-sn" name="name" type="text" value ="{$Think.get.name}" placeholder="" style="width: 100px;">
+						</div>
+						<div class="from-columns column-ext">
+							<label for="order-sn">出发地</label>
+							<input id="order-sn" name="depart" type="text" value ="{$Think.get.depart}" placeholder="" style="width: 100px;">
+						</div>
+						<div class="from-columns column-ext">
+							<label for="order-sn">目的地</label>
+							<input id="order-sn" name="destination" type="text" value ="{$Think.get.destination}" placeholder="" style="width: 100px;">
+						</div>
+						<input type = 'hidden' name ='uid' value = "{$Think.get.uid}"/>
+
+						
+						<div class="from-columns" id="check">
+							<button class="btn green" type="submit">搜索</button>
+							<a href="{:U('index')}" class="btn blue">重置</a>
+						</div>
+					
+                </form>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+						<th><input type="checkbox" id="check_all"/></th>
+						<th>编号</th>
+                        <th>线路名称</th>
+                        <th>出发地</th>
+                        <th>目的地</th>
+						<eq name="unpay_sort_status" value="1"><th><a  href="{:U('index',array(sort_id=>'1',pageSize=>$pageSize))}">报名总人数(未支付)&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="unpay_sort_status" value="2"><th><a  href="{:U('index',array(sort_id=>'2',pageSize=>$pageSize))}">报名总人数(未支付)&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="unpay_sort_status" value="3"><th><a  href="{:U('index',array(sort_id=>'3',pageSize=>$pageSize))}">报名总人数(未支付)&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="pay_sort_status" value="4"><th><a  href="{:U('index',array(sort_id=>'4',pageSize=>$pageSize))}">报名总人数(已支付)&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="pay_sort_status" value="5"><th><a  href="{:U('index',array(sort_id=>'5',pageSize=>$pageSize))}">报名总人数(已支付)&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="pay_sort_status" value="6"><th><a  href="{:U('index',array(sort_id=>'6',pageSize=>$pageSize))}">报名总人数(已支付)&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+                    </tr>
+                </thead>
+                <tbody>
+                    <volist name="lists" id="vo">
+                    <tr>
+                        <td ><input type="checkbox" class="order_check" value="{$vo['classify_id']}"/>
+                        <td >{$vo.goods_sn}</td>
+                        <td >{$vo.name}</td>
+                        <td >{$vo.depart}</td>
+                        <td >{$vo.destination}</td>
+                       <td ><a <gt name="vo.unpay_num" value="0"> href="{:U('info',array(id=>$vo[goods_id],pay_status=>'0'))}"</gt>>{$vo.unpay_num|default=0}&nbsp;(点击查看详情)</a></td>
+                       <td ><a <gt name="vo.pay_num" value="0"> href="{:U('info',array(id=>$vo[goods_id],pay_status=>'1'))}"</gt>>{$vo.pay_num|default=0}&nbsp;(点击查看详情)</a></td>
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+            <div class="row-fluid">
+                <div class="pagination pull-right">
+	                {$_page}<div style="float:right;"><div style="margin-left: 13px;margin-right: 109px;margin-top: 5px;">共{$totalPages}页，共{$_total}条
+	                每页显示</div>
+	                <form class="form-search pull-right" action="{:U('index')}" method="GET" style="margin-right: 33px;margin-top:-24px;">
+	                <input type="text" name="pageSize" value="{$pageSize}" id="changePageSize" style="width:34px;"/>条
+	                </form></div>
+	            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--用户详情-->
+<div class="modal hide" id="message" style="width:600px;">
+
+	<div class="modal-header">
+		<button type="button" class="cancel close" ></button>
+		<h4 class="modal-title">添加/编辑</h4>
+	</div>
+	  	
+	<div class="modal-body">
+		<div>
+		  <div class="w50 w25">图片名称</div>
+		  <div class="w50 w75"><input type="text"  name="s_name"/></div>
+		</div>
+		<div>
+		  <div class="w50 w25">显示顺序</div>
+		  <div class="w50 w75"><input type="text"  name="s_display"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		</div>
+		<div>
+		  <div class="w50 w25">更新时间</div>
+		  <div class="w50 w75"><input type="text"  name="s_displays"/>&nbsp;&nbsp;秒&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		</div>
+		<div>
+			<div class="w50 w25">是否启用</div>
+			<div class="w50 w75">
+				<input type="checkbox" name="s_state" value="1" checked />
+			</div>
+		</div>
+		<div>
+		  <div class="w50 w25">上传图片</div>
+		  <div class="w50 w75">
+			  <div class="controls" style="position:relative;">
+				<span style="color:red;position:absolute;top:2px;left:80px;display:block;">点击下图选择默认封面图片！（上传图片尺寸700X700）</span>
+				<MyTag:plupload type="many" attachment="info.attribute_id" thumb="true" clickdefault="true"/>
+				</div>
+		  </div>
+		</div>
+		
+		<!-- <div class="control-group">
+			<label class="control-label">上传产品图片<span class="required">*</span></label>
+			<div class="controls" style="position:relative;">
+			<span style="color:red;position:absolute;top:2px;left:80px;display:block;">点击下图选择默认封面图片！（上传图片尺寸700X700）</span>
+			<MyTag:plupload type="many" attachment="info.attribute_id" thumb="true" clickdefault="true"/>
+			</div>
+		</div> -->
+	</div>
+	<div class="modal-header"></div>
+	
+	<div class="modal-footer">
+		<button class="btn btn-primary" type='submit'>确认</button>
+		<button class="btn cancel" >取消</button>
+  </div>
+</div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/Hot/hotController'],function(admin){
+            admin.index();
+        });
+    </script>
+</block>

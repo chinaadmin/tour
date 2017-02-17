@@ -1,0 +1,322 @@
+<extend name="Common:base" />
+<block name="css">
+	<load href="__CSS__/App/admin/region/region.css" />
+</block>
+<block name="content">
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">当前位置：产品中心 -- 线路产品</div>
+        </div>
+        <div class="portlet-body">
+        	<div class="clearfix" style="margin-bottom:20px; border-bottom: 1px solid #ccc;">
+				<empty name="uid">
+        		<div class="btn-group" id="insertData">
+					<MyTag:rule name="Product/edit">
+						<a class="btn green" href="{:U('Product/edit')}">添加</a>
+					</MyTag:rule>
+				</div>
+				<div class="btn-group" id="delData">
+					<MyTag:rule name="Product/isSale">
+						<a  class="btn green tag-del">下架</a>
+					</MyTag:rule>
+				</div>
+				<div class="btn-group" style="margin-top: 5px;">
+					<MyTag:rule name="Product/isSale">
+						<a  class="btn green sale" style="margin-top: 5px;">上架</a>
+					</MyTag:rule>
+				</div>
+				</empty>
+				<form class="pull-right form-inline" action="{:U('index')}" method="get">
+			        <div class="form-rows">
+						<div class="from-columns column-ext">
+							<label for="goods_sn">&nbsp;&nbsp;编号：</label>
+							<input id="goods_sn" name="goods_sn" type="text" value ="{$Think.get.goods_sn}" placeholder="" style="width: 120px;">
+						</div>
+						<input name="uid" type="hidden" value ="{$Think.get.uid}" placeholder="" style="width: 120px;">
+						<div class="from-columns column-ext">
+							<label for="name">&nbsp;&nbsp;线路名称：</label>
+							<input id="name" name="name" type="text" value ="{$Think.get.name}" placeholder="" style="width: 120px;">
+						</div>
+
+						<!-- <input type = 'hidden' name ='uid' value = "{$Think.get.uid}"/> -->
+
+						<div class="from-columns column-ext">
+							<label for="depart">&nbsp;&nbsp;出发地：</label>
+							<input id="depart" name="departName" type="text" value="{$Think.get.departName}" placeholder="" style="width: 130px;">
+						</div>
+						<div class="from-columns column-ext">
+							<label for="destination">&nbsp;&nbsp;目的地：</label>
+							<input id="destination" name="destinationName" type="text" value="{$Think.get.destinationName}" placeholder="" style="width: 130px;">
+						</div>
+
+						<div class="from-columns">
+							<label for="min_adult_price">成人最低价格：</label>
+							<input id="min_adult_price" name="minAdultPrice" type="text" value="{$Think.get.minAdultPrice}" style="width: 60px;">
+								<span class="add-on" style='background:#fff;border:none;'>~</span>
+							<input id="min_adult_price" name="minAdultPrice2" type="text" value="{$Think.get.minAdultPrice2}" style="width: 60px;">
+						</div>
+						<div class="from-columns">
+							<label for="fk_tat_id">&nbsp;&nbsp;分类：</label>
+							<select name="checked_id" style="width: 140px;">
+								<option value="">--请选择--</option>
+								<foreach name="categorys" item="v" key="k">
+									<eq name="v.cat_id" value="$checked_id">
+										<option value="{$v.cat_id}" selected>{$v.fullname}</option>
+										<else/>
+										<option value="{$v.cat_id}">{$v.fullname}</option>
+									</eq>
+								</foreach>
+					  	   	</select>
+						</div>
+							<div class="from-columns">
+								<label for="is_sale">&nbsp;&nbsp;</label>
+								<select name="is_sale" style="width: 80px;">
+									<option value="1" <eq name="Think.get.is_sale" value="1">selected</eq>>上架</option>
+									<option value="0" <eq name="Think.get.is_sale" value="0">selected</eq>>下架</option>
+								</select>
+							</div>
+						<div class="from-columns" id="check">
+							<button class="btn green" type="submit">搜索</button>
+							<a href="{:U('index')}" class="btn blue">重置</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th><empty name="uid"><input type="checkbox" id="check_all" /></empty></th>
+						<eq name="id_status" value="1"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'1';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'1';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/1', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'1';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'1';
+						 		};
+							}
+						?>">排序&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="id_status" value="2"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'2';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'2';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/2', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'2';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'2';
+						 		};
+							}
+						?>">排序&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="id_status" value="3"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'3';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'3';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/3', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'3';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'3';
+						 		};
+							}
+						?>">排序&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="username_status" value="4"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'4';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'4';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/4', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'4';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'4';
+						 		};
+							}
+						?>">编号&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="username_status" value="5"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'5';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'5';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/5', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'5';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'5';
+						 		};
+							}
+						?>">编号&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="username_status" value="6"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'6';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'6';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/6', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'6';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'6';
+						 		};
+							}
+						?>">编号&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="realname_status" value="7"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'7';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'7';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/7', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'7';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'7';
+						 		};
+							}
+						?>">线路名称&nbsp;<img src="__IMG__/admin/icon_down.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="realname_status" value="8"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'8';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'8';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/8', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'8';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'8';
+						 		};
+							}
+						?>">线路名称&nbsp;<img src="__IMG__/admin/icon_up.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<eq name="realname_status" value="9"><th><a  href="<?php
+						 	if(strpos($_SERVER['REQUEST_URI'],'?')!==false){
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'9';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'9';
+						 		};
+						 	}else if(strpos($_SERVER['REQUEST_URI'],'/sort_id')!==false){
+								echo preg_replace('/\/sort_id\/(\d+)/i', '/sort_id/9', $_SERVER['REQUEST_URI']);
+						 	}else{
+						 		if($a = strstr($_SERVER['REQUEST_URI'],'sort_id',true)){
+						 			echo $a.sort_id.'='.'9';
+						 		}else{
+						 			echo $_SERVER['REQUEST_URI'].'&'.sort_id.'='.'9';
+						 		};
+							}
+						?>">线路名称&nbsp;<img src="__IMG__/admin/icon_normal.png" alt="" style="height: 15px;margin-left: 4px;"></a></th></eq>
+						<th>出发地</th>
+						<th>目的地</th>
+						<th>成人最低价格</th>
+						<th>更新时间</th>
+						<th>分类</th>
+						<th>所属标签</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="vo">
+						<tr>
+							<empty name="uid">
+								<td>
+									<input type='checkbox' value="{$vo.goods_id}" name='goodsIds[]' class='nav_check'/>
+								</td>
+								<td>{$vo.sort}</td>
+								<td>{$vo.goods_sn}</td>
+								<td>
+									<a href="{:U('edit',['goods_id'=>$vo['goods_id']])}">{$vo.name}</a>
+								</td>
+								<td>{$vo.depart}</td>
+								<td>{$vo.destination}</td>
+								<td>{$vo.minAdultPrice}</td>
+								<td>{$vo.update_time|date='Y-m-d H:i:s',###}</td>
+								<td>{$vo.cate_name}</td>
+								<td>{$vo.linkTag}</td>
+								<!-- <td><a class='onSale' data="{$vo.goods_id}" data-val="{$vo.is_sale}" style="cursor:pointer">{$vo.is_sale|getStatus=###,['1' =>['style'=>'label-success','text'=>'上架'],'0' =>['style'=>'label-danger','text'=>'下架']]}</a></td> -->
+								<td><eq name="vo.is_sale" value="0">下架<else /> 上架</eq></td>
+							<else />
+								<td>
+									<input type="radio" value="{$vo.goods_id}" name="goodsId"/>
+								</td>
+								<td>{$vo.sort}</td>
+								<td>{$vo.goods_sn}</td>
+								<td>
+									{$vo.name}
+								</td>
+								<td>{$vo.depart}</td>
+								<td>{$vo.destination}</td>
+								<td>{$vo.minAdultPrice}</td>
+								<td>{$vo.update_time|date='Y-m-d H:i:s',###}</td>
+								<td>{$vo.cate_name}</td>
+								<td>{$vo.linkTag}</td>
+								<!-- <td><a class='onSale' data="{$vo.goods_id}" data-val="{$vo.is_sale}" style="cursor:pointer">{$vo.is_sale|getStatus=###,['1' =>['style'=>'label-success','text'=>'上架'],'0' =>['style'=>'label-danger','text'=>'下架']]}</a></td> -->
+								<td><eq name="vo.is_sale" value="0">下架<else /> 上架</eq></td>
+							</empty>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+			<notempty name="uid">
+				<div class="from-columns">
+					<button class="btn blue sub-line" type="button">提交</button>
+					<a class="btn grey" href="{:U('Order/selectJump',['uid'=>$uid])}">返回</a>
+					<input type="hidden" name="hiddenuid" value="{$uid}"/>
+				</div>
+			</notempty>
+            <div class="pagination pull-right">
+				<div class="row-fluid" style="margin-top: 30px">
+					<div class="pagination pull-right">
+						{$_page}<div style="float:right;"><div style="margin-left: 13px;margin-right: 109px;margin-top: 5px;">共{$totalPages}页，共{$_total}条
+						每页显示</div>
+						<form class="form-search pull-right" action="{:U('index')}" method="GET" style="margin-right: 33px;margin-top:-24px;">
+							<input type="text" name="pageSize" value="{$pageSize}" id="changePageSize" style="width:34px;"/>条
+						</form></div>
+					</div>
+				</div>
+			 </div>
+        </div>
+    </div>
+</div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/product/productController'],function(main){
+            main.index();
+        });
+    </script>
+</block>

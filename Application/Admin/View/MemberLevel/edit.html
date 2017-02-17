@@ -1,0 +1,39 @@
+<extend name="Common:base" />
+<block name="content">
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">编辑会员等级</div>
+        </div>
+        <div class="portlet-body form">
+            <form autocomplete = "off" id="setPlace_form" action="{:U('update')}" method="post" class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label">等级名称<span class="required">*</span></label>
+                <div class="controls">
+                    <input type="text" name="member_name" class="m-wrap" value="{$info.member_name}"  />
+                </div>
+            </div>
+
+			<div class="control-group">
+                <label class="control-label">升级价格<span class="required"></span></label>
+                <div class="controls">
+                    <input type="text" name="member_price" class="m-wrap" value="{$info.member_price}" />
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="hidden" name="member_id" value="{$info.member_id}"/>
+                <button type="submit" class="btn blue">提交</button>
+                <a class="btn" href="{:U('index')}">返回</a>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/marketing/marketingController'],function(admin){
+           admin.setPlaceEdit();
+        });
+    </script>
+</block>

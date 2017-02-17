@@ -1,0 +1,115 @@
+<extend name="Common:base" />
+<block name="content">
+    <style>
+        .price_left {
+            float: left;
+            width: 120px;
+            height: auto;
+        }
+        .price >div{
+            margin-bottom: 5px;
+        }
+    </style>
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">促销活动  -- 会员促销 -- 下单立减</div>
+        </div>
+        <div class="portlet-body form">
+            <form autocomplete = "off" id="user_edit" action="{:U('Promotions/update')}" method="post" class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label">活动名称<span class="required">*</span></label>
+                <div class="controls">
+                    <input type="text" name="promotions_name" class="m-wrap" value="{$info.promotions_name}"/>
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label">促销时间</label>
+                <div class="controls">
+                    <div class="input-append date date-picker start_time">
+                        <input  name="start_time" type="text" id="start_time" class="span9 start_time m-wrap m-ctrl-medium date-picker" readonly="" size="16" value="<empty name='info.start_time'>{:date('Y-m-d')}<else/>{$info.start_time|date='Y-m-d',###}</empty>">
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                    ~
+                    <div class="input-append date date-picker end_time ">
+                        <input name="end_time" type="text" id="end_time" class="span9 end_time m-wrap m-ctrl-medium date-picker" readonly="" size="16" value="<notempty name='info.end_time'>{$info.end_time|date='Y-m-d',###}</notempty>">
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                    <input type="button" name="sel_times" style="width: 1px;height: 1px;border: none">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">促销范围及立减金额</label>
+                <div class="controls price">
+                    <div>
+                        <div class="price_left">
+                            <input type="checkbox"  name="ordinary_state" <eq name="info.ordinary_state" value="1">checked</eq> ><span>普通会员</span>
+                        </div>
+                        <div class="price_right">
+                            <input type="" name="ordinary_price" class="m-wrap" value="{$info.ordinary_price}"/>
+                            <span>元</span>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="price_left">
+                            <input type="checkbox" name="one_state"  <eq name="info.one_state" value="1">checked</eq>><span>个人VIP会员</span>
+                        </div>
+                        <div class="price_right">
+                            <input type="" name="one_price" class="m-wrap" value="{$info.one_price}"/>
+                            <span>元</span>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="price_left">
+                            <input type="checkbox"  name="family_state" <eq name="info.family_state" value="1">checked</eq>><span>家庭VIP会员</span>
+                        </div>
+                        <div class="price_right">
+                            <input type="" name="family_price" class="m-wrap" value="{$info.family_price}"/>
+                            <span>元</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">每个用户限制享受次数<span class="required">*</span></label>
+                <div class="controls">
+                    <input type="text" name="number" class="m-wrap" value="<empty name='info.number'>0<else />{$info.number}</empty>"/><span class="help-inline">次</span><span class="help-inline" style="color:red;">(-1表示无限)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">是否启用</label>
+                <div class="controls">
+                    <label class="radio">
+                        <input type="radio" name="state" value="2" <eq name="info.state" value="2">checked</eq>/>
+                        禁用
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="state" value="1" <empty name="info.promotions_id">checked<else/><eq name="info.state" value="1">checked</eq></empty>/>
+                        启用
+                    </label>
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="hidden" name="promotions_type" value="1"/>
+                <input type="hidden" name="id" value="{$info.promotions_id}"/>
+                <button type="submit" class="btn blue">提交</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--选择商品END-->	
+	
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/promotions/promotionsController'],function(promotions){
+            promotions.index();
+        });
+    </script>
+</block>

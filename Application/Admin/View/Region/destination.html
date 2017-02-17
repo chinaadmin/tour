@@ -1,0 +1,68 @@
+<extend name="Common:base" />
+<block name="content">
+<div class="row-fluid">
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">当前位置：基础信息录入 -- 目的地</div>
+        </div>
+        <div class="portlet-body">
+            <div class="clearfix" style="margin-bottom:20px; border-bottom: 1px solid #ccc;">
+                <div class="btn-group" id="insertData">
+                    <MyTag:rule name="Category/edit">
+                        <button class="btn green" url="{:U('Category/edit')}">添加</button>
+                    </MyTag:rule>
+                </div>
+                <!-- <div class="btn-group" id="delData">
+                    <MyTag:rule name="Tag/del">
+                        <button url="{:U('Tag/del')}" class="btn green tag-del">删除</button>
+                    </MyTag:rule>
+                </div> -->
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th width="75%">目的地</th>
+                        <th width="10%">是否显示</th>
+                        <th width="15%">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <volist name="lists" id="vo">
+                    <tr>
+                        <td>{$vo.cat_id}</td>
+                        <td>{$vo.status|getStatus=###,['0' =>['style'=>'label-danger','text'=>'否'],'1' =>['style'=>'label-success','text'=>'是']]}</td>
+                        <td>
+                            <MyTag:rule name="Category/edit">
+                            <a class="btn blue-stripe" href="{:U('edit',['cat_id'=>$vo['cat_id']])}">编辑</a>
+                            </MyTag:rule>
+                            <MyTag:rule name="Category/del">
+                            <a class="btn red-stripe js-del" url="{:U('del',['cat_id'=>$vo['cat_id']])}">删除</a>
+                            </MyTag:rule>
+                        </td>
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+           <div class="row-fluid">
+                <div class="btn-group">
+                    <!-- <MyTag:rule name="Category/sort">
+                    <a url="{:U('sort')}" id="save-sort" class="btn green">
+                        <i class="icon-sort"></i> 保存排序
+                    </a>
+                    </MyTag:rule> -->
+                </div>
+                <div class="pagination pull-right">
+                    <ul>    </ul>               
+			     </div>
+            </div>
+        </div>
+    </div>
+</div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        seajs.use(['controller/category/categoryController'],function(main){
+            main.index();
+        });
+    </script>
+</block>
